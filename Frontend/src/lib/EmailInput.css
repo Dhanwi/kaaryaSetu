@@ -1,0 +1,23 @@
+.custom-email-input {
+  color: #22D3EE; /* Text color */
+  background-color: #041124; /* Email box background color */
+  border: 1px solid #06B6D4; /* Border color */
+  box-shadow: 0 0 10px #06B6D4; /* Shadow color */
+}
+
+.custom-email-input .MuiOutlinedInput-root {
+  color: #22D3EE; /* Text color inside the input */
+}
+
+.custom-email-input .MuiOutlinedInput-notchedOutline {
+  border-color: #06B6D4; /* Border color */
+}
+
+.custom-email-input .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+  border-color: #0891B2; /* Border color on focus */
+}
+
+.custom-email-input .MuiFormHelperText-root {
+  color: #22D3EE; /* Helper text color */
+}
+

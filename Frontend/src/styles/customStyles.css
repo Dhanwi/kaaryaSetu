@@ -1,0 +1,21 @@
+.custom-email-input {
+  border-color: #ffffff !important; /* Ensure the border color is applied */
+  box-shadow: 0 0 5px rgb(255, 255, 255) !important; /* Ensure the shadow is applied */
+  border-radius: 10px !important; /* Ensure the border radius is applied */
+  background-color: transparent !important; /* Ensure the background color is applied */
+}
+
+.custom-scrollbar {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  display: none; /* Safari and Chrome */
+}
+
+.text-shadow-effect {
+  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.7);
+}
+
+

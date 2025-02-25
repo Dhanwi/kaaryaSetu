@@ -160,7 +160,7 @@ router.get(
 
       if (!user) {
         console.error("User not found after Google login.");
-        return res.redirect("http://localhost:5173/signup"); // Redirect to signup if user is missing
+        return res.redirect("https://kaaryasetu.tech/signup"); // Redirect to signup if user is missing
       }
 
       // Ensure user type is properly set
@@ -182,11 +182,11 @@ router.get(
       });
 
       // Redirect to frontend without token in URL
-      return res.redirect(`http://localhost:5173/`);
+      return res.redirect(`https://kaaryasetu.tech/`);
     } catch (error) {
       console.error("Error in Google OAuth callback:", error);
       return res.redirect(
-        "http://localhost:5173/login?error=google_auth_failed"
+        "https://kaaryasetu.tech/login?error=google_auth_failed"
       );
     }
   }

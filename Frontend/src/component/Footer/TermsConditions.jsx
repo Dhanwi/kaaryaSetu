@@ -131,7 +131,7 @@ const TermsConditions = () => {
           </h2>
           <p className="text-cyan-300 mt-2">
             For any questions or concerns, please contact us at
-            support@kaaryasteu.com.
+            admin@kaaryasetu.tech
           </p>
         </section>
       </div>

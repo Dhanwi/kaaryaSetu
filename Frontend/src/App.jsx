@@ -18,7 +18,6 @@ import MessagePopup from "./lib/MessagePopup.jsx";
 import isAuth, { userType } from "./lib/isAuth";
 import Landing from "./pages/Landing";
 import ErrorPage from "./component/ErrorPage";
-import Payment from "./component/Payment.jsx";
 import Applications from "./component/TrackApplication/Applications.jsx";
 import MyJobs from "./component/recruiter/MyJobs/MyJobs.jsx";
 import ParentColdMailATS from "./component/ColdMail/ParentColdMailATS.jsx";
@@ -74,7 +73,6 @@ function AppContent() {
           <Route exact path="/logout" element={<Logout />} />
           <Route exact path="/jobs" element={<Jobs />} />
           <Route exact path="/applications" element={<Applications />} />
-          <Route exact path="/payment" element={<Payment />} />
           <Route
             exact
             path="/profile"

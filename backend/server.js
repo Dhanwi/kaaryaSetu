@@ -43,7 +43,7 @@ app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 // Setting up middlewares
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: process.env.VITE_URL,
     credentials: true,
   })
 );

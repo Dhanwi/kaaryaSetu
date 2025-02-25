@@ -29,7 +29,7 @@ cron.schedule("0 0 * * *", async () => {
       user.credits = 2;
       await user.save();
     });
-    console.log("User credits reset to 2 at midnight UTC.");
+    // console.log("User credits reset to 2 at midnight UTC.");
   } catch (error) {
     console.error("Error resetting user credits:", error);
   }
@@ -137,10 +137,10 @@ router.get("/credits", jwtAuth, async (req, res) => {
       .format("YYYY-MM-DD");
     const todayUTC = moment().utc().format("YYYY-MM-DD");
 
-    console.log(`🔍 Last Reset Date: ${lastResetDateUTC}, Today: ${todayUTC}`);
+    // console.log(`🔍 Last Reset Date: ${lastResetDateUTC}, Today: ${todayUTC}`);
 
     if (lastResetDateUTC !== todayUTC) {
-      console.log(`🔄 Resetting credits for user: ${user._id}`);
+      // console.log(`🔄 Resetting credits for user: ${user._id}`);
       creditData.credits = 2;
       creditData.lastResetDate = moment().utc().startOf("day").toDate(); // 🔥 Ensure this updates properly
       await creditData.save();
@@ -174,7 +174,7 @@ router.post("/:modelId/ats-checker", async (req, res) => {
       return res.status(400).json({ message: "Error while uploading file" });
     }
 
-    console.log("Uploaded file:", req.file); // Debug log for the file
+    // console.log("Uploaded file:", req.file); // Debug log for the file
 
     const { file } = req;
     const { modelId } = req.params;
@@ -204,7 +204,7 @@ router.post("/:modelId/ats-checker", async (req, res) => {
 
     try {
       await pipeline(file.stream, fs.createWriteStream(filePath));
-      console.log(`File saved successfully at ${filePath}`);
+      // console.log(`File saved successfully at ${filePath}`);
 
       // Process the uploaded file for ATS checking
       try {

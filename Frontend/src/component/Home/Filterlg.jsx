@@ -109,7 +109,7 @@ export const Filterlg = (props) => {
             <button
               className="bg-[#02101E] border border-cyan-400 text-cyan-400 py-2 px-4 rounded shadow-xl shadow-cyan-500/20"
               onClick={() => {
-                console.log("Applying filters with options:", searchOptions);
+                // console.log("Applying filters with options:", searchOptions);
                 getData(searchOptions);
                 handleClose();
               }}

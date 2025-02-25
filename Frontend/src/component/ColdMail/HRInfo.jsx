@@ -17,9 +17,9 @@ const HRInfo = ({ jobDetails }) => {
         </div>
         <div className="flex justify-center gap-5">
           <div className="flex justify-center bg-[#041124] rounded-lg p-3 font-serif text-[#06B6D4] border border-cyan-500/50">
-            You've crafted the perfect AI-powered cold mail or copied a
+            You&apos;ve crafted the perfect AI-powered cold mail or copied a
             high-converting prompt—now what? Most job seekers stop after hitting
-            "Apply", but you won’t, because you're on Kaaryasetu!
+            &quot;Apply&quot;, but you won’t, because you&apos;re on Kaaryasetu!
           </div>
         </div>
 
@@ -44,7 +44,7 @@ const HRInfo = ({ jobDetails }) => {
           </div>
         </div>
         <div className="flex justify-center bg-[#041124] rounded-lg p-3 font-serif text-[#22D3EE] border border-cyan-500/50">
-          With Kaaryasetu, you're not just another applicant—you’re a smart,
+          With Kaaryasetu, you&apos;re not just another applicant—you’re a smart,
           proactive job seeker ready to secure your dream role.
         </div>
         <div className="flex justify-center text-[#06B6D4]">

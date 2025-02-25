@@ -81,15 +81,12 @@ let schema = new mongoose.Schema(
     skillsets: [String],
     jobType: {
       type: String,
-      // required: true,
     },
     workType: {
       type: String,
-      // required: true,
     },
     url: {
       type: String,
-      // required: true,
     },
     jobDescription: {
       type: String,

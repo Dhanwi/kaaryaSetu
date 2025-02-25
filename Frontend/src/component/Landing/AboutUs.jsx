@@ -1,7 +1,7 @@
 import React from "react";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import TwitterIcon from "@mui/icons-material/Twitter";
-
+ 
 const AboutUs = () => {
   return (
     <div className="bg-[#02101E] text-white min-h-screen p-10">

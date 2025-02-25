@@ -83,7 +83,7 @@ const Jobs = () => {
       address += `?${queryString}`;
     }
 
-    console.log("Fetching data from:", address); // Add this line for debugging
+    // console.log("Fetching data from:", address); // Add this line for debugging
 
     axios
       .get(address, {

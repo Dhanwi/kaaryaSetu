@@ -16,11 +16,11 @@ import bcrypt from "bcryptjs";
 
 const router = express.Router();
 
-//modelRoutes for shuffling:
-// router.get("/models", (req, res) => {
-//   const shuffledModels = shuffleArray([...models]);
-//   res.json({ models: shuffledModels });
-// });
+router.get("/", (req, res) => {
+  res.json({
+    message: "Welcome to the API",
+  });
+});
 
 // To add new job
 router.post("/jobs", jwtAuth, (req, res) => {
@@ -93,7 +93,7 @@ router.get("/jobs", jwtAuth, (req, res) => {
   let sortParams = { dateOfPosting: -1 }; // Sort by dateOfPosting in descending order
 
   // Log received query parameters
-  console.log("Received query parameters:", req.query);
+  // console.log("Received query parameters:", req.query);
 
   // to list down jobs posted by a particular recruiter
   if (user.type === "recruiter" && req.query.myjobs) {
@@ -220,8 +220,8 @@ router.get("/jobs", jwtAuth, (req, res) => {
   }
 
   // Log constructed findParams and sortParams
-  console.log("Constructed findParams:", findParams);
-  console.log("Constructed sortParams:", sortParams);
+  // console.log("Constructed findParams:", findParams);
+  // console.log("Constructed sortParams:", sortParams);
 
   let arr = [
     {
@@ -574,7 +574,7 @@ router.post("/jobs/:id/applications", jwtAuth, (req, res) => {
     },
   })
     .then((appliedApplication) => {
-      console.log(appliedApplication);
+      // console.log(appliedApplication);
       if (appliedApplication !== null) {
         res.status(400).json({
           message: "You have already applied for this job",
@@ -877,8 +877,8 @@ router.put("/applications/:id", jwtAuth, (req, res) => {
     }
   } else {
     if (status === "cancelled") {
-      console.log(id);
-      console.log(user._id);
+      // console.log(id);
+      // console.log(user._id);
       Application.findOneAndUpdate(
         {
           _id: id,
@@ -891,7 +891,7 @@ router.put("/applications/:id", jwtAuth, (req, res) => {
         }
       )
         .then((tmp) => {
-          console.log(tmp);
+          // console.log(tmp);
           res.json({
             message: `Application ${status} successfully`,
           });
@@ -1026,7 +1026,7 @@ router.put("/rating", jwtAuth, (req, res) => {
     })
       .then((rating) => {
         if (rating === null) {
-          console.log("new rating");
+          // console.log("new rating");
           Application.countDocuments({
             userId: data.applicantId,
             recruiterId: user._id,
@@ -1192,11 +1192,11 @@ router.put("/rating", jwtAuth, (req, res) => {
       category: "job",
     })
       .then((rating) => {
-        console.log(user._id);
-        console.log(data.jobId);
-        console.log(rating);
+        // console.log(user._id);
+        // console.log(data.jobId);
+        // console.log(rating);
         if (rating === null) {
-          console.log(rating);
+          // console.log(rating);
           Application.countDocuments({
             userId: user._id,
             jobId: data.jobId,
@@ -1314,7 +1314,7 @@ router.put("/rating", jwtAuth, (req, res) => {
                     return;
                   }
                   const avg = result[0].average;
-                  console.log(avg);
+                  // console.log(avg);
 
                   Job.findOneAndUpdate(
                     {
@@ -1542,7 +1542,7 @@ setInterval(() => {
 
   SavedJob.deleteMany({ savedAt: { $lt: thirtyDaysAgo } })
     .then(() => {
-      console.log("Old saved jobs deleted successfully");
+      // console.log("Old saved jobs deleted successfully");
     })
     .catch((err) => {
       console.error("Error deleting old saved jobs", err);

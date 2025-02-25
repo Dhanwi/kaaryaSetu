@@ -1,4 +1,4 @@
-export const server = "http://localhost:4445";
+export const server = import.meta.env.VITE_API_URL;
 
 const apiList = {
   login: `${server}/auth/login`,

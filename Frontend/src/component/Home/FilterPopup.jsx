@@ -98,7 +98,7 @@ export const FilterPopup = (props) => {
               <button
                 className="bg-[#6d28d9] text-white py-2 px-4 rounded"
                 onClick={() => {
-                  console.log("Applying filters with options:", searchOptions);
+                  // console.log("Applying filters with options:", searchOptions);
                   getData(searchOptions);
                   handleClose();
                 }}

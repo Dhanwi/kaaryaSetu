@@ -1,10 +1,7 @@
 import React from "react";
 import Hero from "../component/Landing/Hero";
-
-// import Testimonials from "../component/Landing/Testimonials";
 import HowItworks from "../component/Landing/HowItworks";
 import Pricing from "../component/Landing/Pricing";
-// import AboutUs from "../component/Landing/AboutUs";
 import TopCompanies from "../component/Landing/TopCompanies";
 import RealChallenges from "../component/Landing/RealChallenges";
 import TailoredSolution from "../component/Landing/TailoredSolution";
@@ -22,11 +19,6 @@ const Landing = () => {
       <Pricing />
       <FAQ />
       <JobSearchBoost />
-
-      {/* <AboutUs /> */}
-      {/* <Fomo /> */}
-
-      
     </div>
   );
 };

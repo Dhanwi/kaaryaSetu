@@ -50,7 +50,9 @@ const ColdMailATSPage = ({ jobDetails }) => {
     - Salary: ${jobDetails.salary}
     
     User Email: ${customEmail || userEmail}
-    Resume: ${resumeFile ? `${server}${resumeFile}` : "No resume uploaded"}
+    Resume: ${
+      resumeFile ? `${server}${resumeFile}` : "Upload resume while sending mail"
+    }
   `;
 
   return (

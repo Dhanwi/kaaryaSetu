@@ -126,7 +126,7 @@ export const JobTile = ({ job }) => {
                 {job.salary && (
                   <>
                     <span>|</span>
-                    <p className="font-semibold">₹{job.salary}</p>
+                    <p className="font-semibold">{job.salary}</p>
                   </>
                 )}
               </div>

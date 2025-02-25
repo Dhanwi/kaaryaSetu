@@ -195,12 +195,12 @@ const ApplicationTile = ({ application, getData }) => {
               </span>
             ))}
           </div>
-          <button
+          {/* <button
             className="mt-2 bg-[#22D3EE] text-white py-2 px-4 rounded shadow-cyan-500/20"
             onClick={getResume}
           >
             <FaDownload className="inline-block mr-2" /> Download Resume
-          </button>
+          </button> */}
           <button
             className="ml-2 bg-[#06B6D4] text-white py-2 px-4 rounded shadow-cyan-500/20"
             onClick={() => setOpenEndJob(true)}

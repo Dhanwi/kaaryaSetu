@@ -137,7 +137,7 @@ const JobDetails = () => {
                   {job.salary && (
                     <>
                       <span>|</span>
-                      <p className="font-semibold">₹{job.salary}</p>
+                      <p className="font-semibold">{job.salary}</p>
                     </>
                   )}
                 </div>
@@ -207,7 +207,7 @@ const JobDetails = () => {
           {job.salary && (
             <div className="mb-4">
               <div className="font-bold text-lg text-cyan-400">Salary</div>
-              <p className="text-sm">₹{job.salary}</p>
+              <p className="text-sm">{job.salary}</p>
             </div>
           )}
           {job.skillsets && (

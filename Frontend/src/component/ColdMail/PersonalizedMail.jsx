@@ -101,10 +101,6 @@ const PersonalizedMail = ({
   }, []);
 
   const handleRequestPersonalizedMail = async () => {
-    if (!resumeFile) {
-      alert("Please upload a resume first!");
-      return;
-    }
     setShowModal(true);
   };
 
@@ -153,7 +149,7 @@ const PersonalizedMail = ({
           <h2 className="text-xl text-[#22D3EE] flex justify-center mt-3 font-bold mb-1">
             Personalized Mail Request
           </h2>
-          <div className="flex justify-center text-white text-lg font-serif mb-7">
+          {/* <div className="flex justify-center text-white text-lg font-serif mb-7">
             Choose your resume, or check the already uploaded resume before
             proceeding
           </div>
@@ -183,7 +179,7 @@ const PersonalizedMail = ({
               <FaCheckCircle className="w-6 h-6 mr-2" />
               Resume successfully uploaded
             </div>
-          )}
+          )} */}
         </div>
 
         <div className="mb-2 text-white font-serif text-md">

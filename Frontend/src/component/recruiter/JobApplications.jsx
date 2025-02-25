@@ -232,12 +232,12 @@ const ApplicationTile = ({ application, getData }) => {
           <h3 className="text-lg font-bold">{application.jobApplicant.name}</h3>
           <p>Applied On: {appliedOn.toLocaleDateString()}</p>
           <div className="mt-2">{renderStatusButtons()}</div>
-          <button
+          {/* <button
             className="mt-4 bg-[#22D3EE] text-white py-2 px-4 rounded shadow-cyan-500/20"
             onClick={downloadResume}
           >
             <FaDownload className="inline-block mr-2" /> Download Resume
-          </button>
+          </button> */}
         </div>
       </div>
     </div>

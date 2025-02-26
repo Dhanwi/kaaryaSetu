@@ -22,7 +22,7 @@ const Hero = () => {
           <div className="flex flex-col md:flex-row gap-3 md:gap-10 mt-24 w-full">
             <div className="flex justify-center md:justify-end w-full">
               <a
-                href="https://t.co/JttoLs8w0t"
+                href="https://chat.whatsapp.com/GtPBs51IF9v362OoFfYpkA"
                 className="flex items-center justify-center border-y-2 hover:border-x-2 hover:border-y-0 text-black text-md font-bold px-3 py-2 bg-[#dce00d] rounded-full rounded-tl-full"
               >
                 <span className="ml-2 hover:underline flex items-center">
@@ -35,7 +35,7 @@ const Hero = () => {
             </div>
             <div className="flex justify-center md:justify-start w-full">
               <a
-                href="https://t.co/JttoLs8w0t"
+                href="https://chat.whatsapp.com/DRT2bpI6y9iDM9dAHLMCUS"
                 className="flex items-center justify-center text-black text-md border-y-2 hover:border-x-2 hover:border-y-0 font-bold px-3 py-2 bg-[#dce00d] rounded-full"
               >
                 <span className="ml-2 hover:underline flex items-center">

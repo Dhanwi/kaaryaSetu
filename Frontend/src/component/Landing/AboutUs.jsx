@@ -1,7 +1,7 @@
 import React from "react";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import TwitterIcon from "@mui/icons-material/Twitter";
- 
+
 const AboutUs = () => {
   return (
     <div className="bg-[#02101E] text-white min-h-screen p-10">
@@ -47,7 +47,7 @@ const AboutUs = () => {
         </p>
         <p className="mt-4 text-gray-300">
           For more information, visit our{" "}
-          <a href="https://kaaryasteu.com" className="text-cyan-400">
+          <a href="https://kaaryasetu.tech/" className="text-cyan-400">
             website
           </a>{" "}
           or connect with us on{" "}
@@ -78,8 +78,8 @@ const AboutUs = () => {
         <div className="flex flex-wrap justify-center mt-10 gap-8">
           {/* Founder */}
           <div className="bg-[#020C1B] shadow-black p-6 rounded-lg shadow-xl w-80 text-center">
-            <h3 className="text-xl font-semibold text-white">Priya Jha</h3>
-            <p className="text-gray-300">Founder | Full-Stack Developer</p>
+            <h3 className="text-xl font-semibold text-white">Priya</h3>
+            <p className="text-gray-300">Founder | MERN Stack Developer</p>
             <p className="text-gray-400 mt-2">
               I am passionate about empowering job seekers with cutting-edge
               technology. Leading Kaaryasteu with a vision to simplify job

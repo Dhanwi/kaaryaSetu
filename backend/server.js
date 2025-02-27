@@ -45,6 +45,8 @@ app.use(
   cors({
     origin: process.env.VITE_URL,
     credentials: true,
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"], // Allow all necessary HTTP methods
+    allowedHeaders: ["Content-Type", "Authorization"], // Allow necessary headers
   })
 );
 app.use(express.json());

@@ -8,7 +8,6 @@ import Job from "../db/Job.js";
 import Application from "../db/Application.js";
 import Rating from "../db/Rating.js";
 import SavedJob from "../db/SavedJob.js"; // Import the SavedJob model
-import nodemailer from "nodemailer";
 import path from "path";
 import crypto from "crypto";
 import bcrypt from "bcryptjs";
@@ -1410,41 +1409,6 @@ router.put("/jobs/:id/applications", jwtAuth, (req, res) => {
         error: err,
       });
     });
-});
-
-// Route to handle sending personalized mail requests
-router.post("/send-email", jwtAuth, async (req, res) => {
-  const { to, subject, text, attachments, userEmail } = req.body;
-
-  // Configure the email transport using nodemailer
-  const transporter = nodemailer.createTransport({
-    service: "gmail",
-    auth: {
-      user: "dbgpriyakumari@gmail.com", // replace with your email
-      pass: process.env.MAIL_PASSWORD, // replace with your email password
-    },
-  });
-
-  const mailOptions = {
-    from: "dbgpriyakumari@gmail.com", // replace with your email
-    to,
-    subject,
-    text: `${text}\n\nUser Email: ${userEmail}`,
-    attachments: attachments.map((attachment) => ({
-      filename: attachment.filename,
-      path: attachment.path,
-    })),
-  };
-
-  try {
-    await transporter.sendMail(mailOptions);
-    res.json({ message: "Personalized mail request sent successfully!" });
-  } catch (error) {
-    console.error("Error sending personalized mail request:", error);
-    res
-      .status(500)
-      .json({ message: "Error sending personalized mail request." });
-  }
 });
 
 // Save a job

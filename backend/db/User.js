@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs"; // Changed from bcrypt to bcryptjs
 import "mongoose-type-email";
 
 let schema = new mongoose.Schema(

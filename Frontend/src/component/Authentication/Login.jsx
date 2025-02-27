@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { SetPopupContext } from "../../App";
 import apiList from "../../lib/apiList";
 import isAuth from "../../lib/isAuth";
@@ -10,8 +10,18 @@ import { FaUserCircle, FaLock, FaArrowRight, FaStar } from "react-icons/fa"; // 
 
 const Login = () => {
   const navigate = useNavigate();
+  const location = useLocation(); // Initialize useLocation
   const setPopup = useContext(SetPopupContext);
   const [loggedin, setLoggedin] = useState(isAuth());
+
+  // Extract redirect URL from query parameters
+  const redirectUrl = new URLSearchParams(location.search).get("redirect");
+
+  useEffect(() => {
+    if (loggedin) {
+      navigate(redirectUrl || "/");
+    }
+  }, [loggedin, navigate, redirectUrl]);
 
   const [loginDetails, setLoginDetails] = useState({
     email: "",
@@ -38,16 +48,6 @@ const Login = () => {
     });
   };
 
-  const handleInputError = (key, status, message) => {
-    setInputErrorHandler({
-      ...inputErrorHandler,
-      [key]: {
-        error: status,
-        message: message,
-      },
-    });
-  };
-
   const handleLogin = async () => {
     const verified = !Object.keys(inputErrorHandler).some((obj) => {
       return inputErrorHandler[obj].error;
@@ -71,7 +71,6 @@ const Login = () => {
           severity: "success",
           message: "Logged in successfully",
         });
-        // navigate("/home");
       } else {
         setPopup({
           open: true,
@@ -86,10 +85,6 @@ const Login = () => {
         message: "Incorrect Input",
       });
     }
-  };
-
-  const handleGoogleSuccess = () => {
-    window.location.href = apiList.googleLogin;
   };
 
   const handleForgotPassword = () => {
@@ -117,17 +112,7 @@ const Login = () => {
     }
   }, []);
 
-  const handleGoogleFailure = (response) => {
-    setPopup({
-      open: true,
-      severity: "error",
-      message: "Google Sign In was unsuccessful. Try again later",
-    });
-  };
-
-  return loggedin ? (
-    navigate("/")
-  ) : (
+  return loggedin ? null : (
     <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID}>
       <div className="relative flex items-center h-screen mt-64 md:mt-0 md:overflow-y-hidden p-8 bg-[#02101E]">
         <div className="flex flex-col md:flex-row items-center gap-8 justify-center mt-10 w-full rounded-3xl p-6">

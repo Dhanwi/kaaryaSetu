@@ -1,9 +1,10 @@
 import { useEffect, useState, useContext } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { SetPopupContext } from "../../App";
 import axios from "axios";
 import apiList from "../../lib/apiList";
 import { userType } from "../../lib/isAuth";
+import isAuth from "../../lib/isAuth"; // Import the isAuth function
 import { IconButton } from "@mui/material";
 import SaveIcon from "@mui/icons-material/Save";
 import CheckIcon from "@mui/icons-material/Check";
@@ -13,8 +14,15 @@ const JobDetails = () => {
   const setPopup = useContext(SetPopupContext);
   const [job, setJob] = useState(null);
   const [isSaved, setIsSaved] = useState(false); // State to track if job is saved
+  const navigate = useNavigate(); // Initialize navigate
 
   useEffect(() => {
+    if (!isAuth()) {
+      const redirectUrl = `/job/${jobId}`;
+      navigate(`/signup?redirect=${redirectUrl}`);
+      return;
+    }
+
     axios
       .get(`${apiList.jobs}/${jobId}`, {
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
@@ -29,7 +37,7 @@ const JobDetails = () => {
           message: "Error fetching job details",
         });
       });
-  }, [jobId, setPopup]);
+  }, [jobId, setPopup, navigate]);
 
   useEffect(() => {
     if (job) {

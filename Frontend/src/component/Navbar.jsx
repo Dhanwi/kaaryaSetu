@@ -1,5 +1,5 @@
 import { AppBar, Toolbar, Typography, Button } from "@mui/material";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { useState } from "react";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
@@ -10,6 +10,9 @@ import isAuth, { userType } from "../lib/isAuth";
 const Navbar = (props) => {
   let history = useNavigate();
   const [menuOpen, setMenuOpen] = useState(false);
+
+  // Extract the current path as the redirect URL
+  const redirectUrl = encodeURIComponent(location.pathname + location.search);
 
   const handleClick = (location) => {
     history(location);
@@ -146,12 +149,19 @@ const Navbar = (props) => {
                   <Button color="inherit" onClick={() => handleClick("/")}>
                     Home
                   </Button>
-                  <Button color="inherit" onClick={() => handleClick("/login")}>
+                  <Button
+                    color="inherit"
+                    onClick={() =>
+                      handleClick(`/login?redirect=${redirectUrl}`)
+                    }
+                  >
                     Login
                   </Button>
                   <Button
                     color="inherit"
-                    onClick={() => handleClick("/signup")}
+                    onClick={() =>
+                      handleClick(`/signup?redirect=${redirectUrl}`)
+                    }
                   >
                     Signup
                   </Button>
@@ -231,10 +241,16 @@ const Navbar = (props) => {
             <Button color="inherit" onClick={() => handleClick("/")}>
               Home
             </Button>
-            <Button color="inherit" onClick={() => handleClick("/login")}>
+            <Button
+              color="inherit"
+              onClick={() => handleClick(`/login?redirect=${redirectUrl}`)}
+            >
               Login
             </Button>
-            <Button color="inherit" onClick={() => handleClick("/signup")}>
+            <Button
+              color="inherit"
+              onClick={() => handleClick(`/signup?redirect=${redirectUrl}`)}
+            >
               Signup
             </Button>
             <Button color="inherit" onClick={() => handleClick("/about")}>

@@ -1,6 +1,6 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom"; // Import useLocation
 import { SetPopupContext } from "../../App";
 import apiList from "../../lib/apiList";
 import isAuth from "../../lib/isAuth";
@@ -18,8 +18,18 @@ import MultifieldInput from "./MultifieldInput";
 
 const Signup = () => {
   const navigate = useNavigate();
+  const location = useLocation(); // Initialize useLocation
   const setPopup = useContext(SetPopupContext);
   const [loggedin, setLoggedin] = useState(isAuth());
+
+  // Extract redirect URL from query parameters
+  const redirectUrl = new URLSearchParams(location.search).get("redirect");
+
+  useEffect(() => {
+    if (loggedin) {
+      navigate(redirectUrl || "/");
+    }
+  }, [loggedin, navigate, redirectUrl]);
 
   const [signupDetails, setSignupDetails] = useState({
     type: "applicant",
@@ -100,7 +110,7 @@ const Signup = () => {
       }
 
       axios
-        .post(apiList.signup, updatedDetails)
+        .post(apiList.signup, { ...updatedDetails, redirect: redirectUrl })
         .then((response) => {
           localStorage.setItem("token", response.data.token);
           localStorage.setItem("type", response.data.type);
@@ -126,19 +136,18 @@ const Signup = () => {
 
   const handleGoogleSuccess = (response) => {
     const token = response.credential;
-    // Get the selected user type from the form
 
     axios
-      .post(apiList.googleSignup, { token, type: signupDetails.type }) // Send selected type
+      .post(apiList.googleSignup, {
+        token,
+        type: signupDetails.type,
+        redirect: redirectUrl, // Pass redirect URL to backend
+      }) // Send selected type and redirect URL
       .then((response) => {
         localStorage.setItem("token", response.data.token);
         localStorage.setItem("type", response.data.type);
         setLoggedin(isAuth());
 
-        // Redirect to home ("/") after successful signup
-        // window.location.href = "/";
-        // window.location.reload(); // Forces a fresh state update
-        navigate("/");
         setPopup({
           open: true,
           severity: "success",
@@ -165,9 +174,7 @@ const Signup = () => {
 
   const isSignup = window.location.pathname.includes("signup");
 
-  return loggedin ? (
-    navigate("/")
-  ) : (
+  return loggedin ? null : (
     <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID}>
       <div className="relative flex items-center h-screen mt-96 md:mt-0 md:overflow-y-hidden p-8 bg-[#02101E]">
         <div className="flex flex-col md:flex-row items-center gap-8 justify-center mt-10 w-full rounded-3xl p-6">
@@ -394,7 +401,9 @@ const Signup = () => {
                 Already registered,{" "}
                 <a
                   className="text-sm text-sky-500 hover:underline hover:text-[#0495af]"
-                  href="/login"
+                  href={`/login?redirect=${new URLSearchParams(
+                    location.search
+                  ).get("redirect")}`}
                 >
                   {" "}
                   Login here

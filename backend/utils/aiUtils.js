@@ -118,7 +118,7 @@ export async function generateColdMail(model, jobDescription, userName) {
       `,
   };
 
-  console.log("Generating cold mail with prompt:", prompt);
+  // console.log("Generating cold mail with prompt:", prompt);
 
   try {
     switch (model) {
@@ -131,7 +131,7 @@ export async function generateColdMail(model, jobDescription, userName) {
           messages: [systemMessage, userMessage],
           max_tokens: openAILimits.maxTokens,
         });
-        console.log("OpenAI response:", responseOpenAI);
+        // console.log("OpenAI response:", responseOpenAI);
         return responseOpenAI.choices[0].message.content.trim();
 
       // Groq Models
@@ -144,7 +144,7 @@ export async function generateColdMail(model, jobDescription, userName) {
           messages: [systemMessage, userMessage],
           max_tokens: groqLimits.maxTokens,
         });
-        console.log("Groq response:", responseGroq);
+        // console.log("Groq response:", responseGroq);
         return responseGroq.choices[0].message.content.trim();
 
       // Gemini Models
@@ -157,7 +157,7 @@ export async function generateColdMail(model, jobDescription, userName) {
           prompt,
           maxTokens: geminiLimits.maxTokens,
         });
-        console.log("Gemini response:", geminiResponse);
+        // console.log("Gemini response:", geminiResponse);
         return geminiResponse.response.text.trim();
 
       default:

@@ -14,6 +14,7 @@ const router = express.Router();
 router.post("/signup", async (req, res) => {
   try {
     const data = req.body;
+    const redirectUrl = data.redirect || "/"; // Extract redirect URL
 
     if (!data.email || !data.password || !data.type || !data.name) {
       return res.status(400).json({ error: "Missing required fields." });
@@ -107,9 +108,11 @@ router.post("/signup", async (req, res) => {
     const token = jwt.sign({ _id: user._id }, authKeys.jwtSecretKey, {
       expiresIn: "1d",
     });
+
     res.json({
       token: token,
       type: user.type,
+      redirect: redirectUrl, // Include redirect URL in response
     });
   } catch (err) {
     console.error("Error in signup:", err);
@@ -132,9 +135,13 @@ router.post("/login", (req, res, next) => {
       }
       // Token
       const token = jwt.sign({ _id: user._id }, authKeys.jwtSecretKey);
+
+      // Include redirect URL in response if provided
+      const redirectUrl = req.query.redirect || "/";
       res.json({
         token: token,
         type: user.type,
+        redirect: redirectUrl, // Include redirect URL in response
       });
     }
   )(req, res, next);
@@ -182,7 +189,8 @@ router.get(
       });
 
       // Redirect to frontend without token in URL
-      return res.redirect(`${process.env.VITE_URL}/`);
+      const redirectUrl = req.query.redirect || "/";
+      return res.redirect(`${process.env.VITE_URL}${redirectUrl}`);
     } catch (error) {
       console.error("Error in Google OAuth callback:", error);
       return res.redirect(
@@ -193,7 +201,8 @@ router.get(
 );
 
 router.post("/google", async (req, res) => {
-  const { token } = req.body;
+  const { token, redirect } = req.body; // Get the redirect URL from the request body
+
   try {
     const ticket = await client.verifyIdToken({
       idToken: token,
@@ -243,9 +252,11 @@ router.post("/google", async (req, res) => {
     }
 
     const jwtToken = jwt.sign({ _id: user._id }, authKeys.jwtSecretKey);
+
     res.json({
       token: jwtToken,
       type: user.type, // Send correct user type
+      redirect: redirect || "/", // Include the redirect URL in the response
     });
   } catch (err) {
     console.error("Google OAuth error:", err);

@@ -64,7 +64,7 @@ const AIGeneratedPrompt = ({
         onClick={generateColdMailPrompt}
         className={`px-4 py-2 rounded ${
           credits > 0
-            ? "text-[#02101E] hover:bg-[#0891B2] shadow-cyan-500/50"
+            ? "bg-[#22D3EE] text-[#092644] hover:bg-[#0891B2] shadow-cyan-500/50"
             : "bg-gray-400 text-gray-700 cursor-not-allowed"
         }`}
         disabled={credits < 1}

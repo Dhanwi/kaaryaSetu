@@ -139,13 +139,15 @@ export async function generateColdMail(model, jobDescription, userName) {
       case "llama-3.1-8b-instant":
       case "gemma2-9b-it":
         const groqLimits = MODEL_LIMITS.groq[model];
-        const responseGroq = await groq.chat.completions.create({
-          model: model,
-          messages: [systemMessage, userMessage],
-          max_tokens: groqLimits.maxTokens,
+        return await retryRequest(async () => {
+          const responseGroq = await groq.chat.completions.create({
+            model: model,
+            messages: [systemMessage, userMessage],
+            max_tokens: groqLimits.maxTokens,
+          });
+          console.log("Groq response:", responseGroq);
+          return responseGroq.choices[0].message.content.trim();
         });
-        console.log("Groq response:", responseGroq);
-        return responseGroq.choices[0].message.content.trim();
 
       // Gemini Models
       case "gemini-1.5-flash":
@@ -169,4 +171,19 @@ export async function generateColdMail(model, jobDescription, userName) {
   }
 }
 
-
+// Retry logic for Groq API requests
+async function retryRequest(requestFn, retries = 3, delay = 1000) {
+  for (let attempt = 1; attempt <= retries; attempt++) {
+    try {
+      return await requestFn();
+    } catch (error) {
+      if (attempt < retries) {
+        console.warn(`Attempt ${attempt} failed. Retrying in ${delay}ms...`);
+        await new Promise((resolve) => setTimeout(resolve, delay));
+      } else {
+        console.error("All retry attempts failed.");
+        throw error;
+      }
+    }
+  }
+}

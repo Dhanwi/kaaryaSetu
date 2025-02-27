@@ -45,12 +45,27 @@ app.use(
   cors({
     origin: process.env.VITE_URL,
     credentials: true,
-    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"], // Allow all necessary HTTP methods
-    allowedHeaders: ["Content-Type", "Authorization"], // Allow necessary headers
   })
 );
 app.use(express.json());
 app.use(passportConfig.initialize());
+
+// Add Content Security Policy (CSP) Header
+app.use((req, res, next) => {
+  res.setHeader(
+    "Content-Security-Policy",
+    "script-src 'self' https://accounts.google.com/gsi/client; " +
+      "frame-src 'self' https://accounts.google.com/gsi/; " +
+      "connect-src 'self' https://accounts.google.com/gsi/;"
+  );
+  next();
+});
+
+// Add Cross-Origin-Opener-Policy (COOP) Header
+app.use((req, res, next) => {
+  res.setHeader("Cross-Origin-Opener-Policy", "same-origin-allow-popups");
+  next();
+});
 
 // Routing
 app.use("/auth", authRoutes);

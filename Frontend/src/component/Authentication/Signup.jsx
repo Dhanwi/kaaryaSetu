@@ -168,8 +168,8 @@ const Signup = () => {
     navigate("/")
   ) : (
     <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID}>
-      <div className="relative flex items-center h-screen overflow-y-hidden p-8 bg-[#02101E]">
-        <div className="flex items-center gap-8 justify-center mt-10 w-full rounded-3xl p-6">
+      <div className="relative flex items-center h-screen mt-96 md:mt-0 md:overflow-y-hidden p-8 bg-[#02101E]">
+        <div className="flex flex-col md:flex-row items-center gap-8 justify-center mt-10 w-full rounded-3xl p-6">
           <div className="flex rounded-l-3xl w-full">
             <div className="flex flex-col w-full items-center justify-center align-middle place-content-center gap-4">
               <div className="text-cyan-400 text-xl mb-1 font-serif italic">

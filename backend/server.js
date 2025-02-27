@@ -7,8 +7,10 @@ import mongoose from "mongoose";
 import passportConfig from "./lib/passportConfig.js";
 import cors from "cors";
 import fs from "fs";
+import jwt from "jsonwebtoken";
+import jwksClient from "jwks-rsa";
+
 import aiRoutes from "./routes/aiRoutes.js";
-// import modelRoutes from "./routes/modelRoutes.js";
 import authRoutes from "./routes/authRoutes.js";
 import apiRoutes from "./routes/apiRoutes.js";
 
@@ -50,7 +52,7 @@ app.use(
 app.use(express.json());
 app.use(passportConfig.initialize());
 
-// Add Content Security Policy (CSP) Header
+// Security Headers
 app.use((req, res, next) => {
   res.setHeader(
     "Content-Security-Policy",
@@ -58,13 +60,55 @@ app.use((req, res, next) => {
       "frame-src 'self' https://accounts.google.com/gsi/; " +
       "connect-src 'self' https://accounts.google.com/gsi/;"
   );
+  res.setHeader("Cross-Origin-Opener-Policy", "same-origin-allow-popups");
   next();
 });
 
-// Add Cross-Origin-Opener-Policy (COOP) Header
-app.use((req, res, next) => {
-  res.setHeader("Cross-Origin-Opener-Policy", "same-origin-allow-popups");
-  next();
+// JWKS Client for Token Validation
+const client = jwksClient({
+  jwksUri: "https://www.googleapis.com/oauth2/v3/certs",
+});
+
+function getKey(header, callback) {
+  client.getSigningKey(header.kid, (err, key) => {
+    if (err) return callback(err);
+    const signingKey = key.publicKey || key.rsaPublicKey;
+    callback(null, signingKey);
+  });
+}
+// Event Receiver Endpoint for Security Events
+app.post("/google/security-events", async (req, res) => {
+  const token = req.body.token; // Extract the token from the request body
+
+  try {
+    // Decode the token without verifying it
+    const decodedToken = jwt.decode(token, { complete: true });
+
+    // Validate the token
+    jwt.verify(
+      token,
+      getKey,
+      {
+        issuer: "https://accounts.google.com/",
+        audience: process.env.GOOGLE_CLIENT_ID, // Replace with your Google Client ID
+        algorithms: ["RS256"],
+      },
+      (err, verifiedToken) => {
+        if (err) {
+          console.error("Invalid token:", err.message);
+          return res.status(400).send("Invalid token");
+        }
+        // Handle the security event
+        console.log("Security event received:", verifiedToken);
+
+        // Acknowledge receipt of the token
+        res.status(202).send("Event received");
+      }
+    );
+  } catch (error) {
+    console.error("Error processing security event:", error.message);
+    res.status(400).send("Error processing token");
+  }
 });
 
 // Routing

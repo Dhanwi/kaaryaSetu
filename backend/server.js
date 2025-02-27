@@ -61,6 +61,7 @@ app.use((req, res, next) => {
       "connect-src 'self' https://accounts.google.com/gsi/;"
   );
   res.setHeader("Cross-Origin-Opener-Policy", "same-origin-allow-popups");
+  res.setHeader("Cross-Origin-Embedder-Policy", "require-corp");
   next();
 });
 

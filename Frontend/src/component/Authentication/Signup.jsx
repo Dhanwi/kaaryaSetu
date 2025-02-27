@@ -136,8 +136,9 @@ const Signup = () => {
         setLoggedin(isAuth());
 
         // Redirect to home ("/") after successful signup
-        window.location.href = "/";
+        // window.location.href = "/";
         // window.location.reload(); // Forces a fresh state update
+        navigate("/");
         setPopup({
           open: true,
           severity: "success",

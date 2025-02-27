@@ -50,12 +50,6 @@ app.use(
 app.use(express.json());
 app.use(passportConfig.initialize());
 
-app.use((req, res, next) => {
-  res.setHeader("Cross-Origin-Opener-Policy", "same-origin-allow-popups");
-  res.setHeader("Cross-Origin-Embedder-Policy", "require-corp");
-  next();
-});
-
 // Routing
 app.use("/auth", authRoutes);
 app.use("/api", apiRoutes);

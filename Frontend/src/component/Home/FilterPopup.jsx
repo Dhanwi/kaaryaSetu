@@ -7,17 +7,19 @@ export const FilterPopup = (props) => {
   return (
     open && (
       <div
-        className=" fixed top-40 flex items-center justify-center bg-black bg-opacity-50 backdrop-blur-lg h-[70vh] w-[60vw] border-x-2 border-white rounded-3xl mt-8"
+        className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 backdrop-blur-lg"
         onClick={handleClose}
       >
         <div
-          className="bg-transparent rounded-3xl shadow-md w-1/2"
+          className="bg-transparent rounded-3xl shadow-md w-full max-w-2xl mx-4 sm:mx-6 md:mx-8 lg:mx-10"
           onClick={(e) => e.stopPropagation()}
         >
-          <div className="space-y-6">
-            <div className="flex items-center">
-              <div className="w-1/4">Job Type</div>
-              <div className="flex-1 flex justify-around">
+          <div className="space-y-4 sm:space-y-6 p-4 sm:p-6">
+            <div className="flex flex-col sm:flex-row items-center">
+              <div className="w-full sm:w-1/4 mb-2 sm:mb-0 text-sm sm:text-base">
+                Job Type
+              </div>
+              <div className="flex-1 flex flex-col sm:flex-row justify-around space-y-2 sm:space-y-0">
                 <label className="flex items-center">
                   <input
                     type="checkbox"
@@ -33,7 +35,7 @@ export const FilterPopup = (props) => {
                       });
                     }}
                   />
-                  <span className="ml-2">Full Time</span>
+                  <span className="ml-2 text-sm sm:text-base">Full Time</span>
                 </label>
                 <label className="flex items-center">
                   <input
@@ -50,13 +52,15 @@ export const FilterPopup = (props) => {
                       });
                     }}
                   />
-                  <span className="ml-2">Internship</span>
+                  <span className="ml-2 text-sm sm:text-base">Internship</span>
                 </label>
               </div>
             </div>
-            <div className="flex items-center">
-              <div className="w-1/4">Work Type</div>
-              <div className="flex-1 flex justify-around">
+            <div className="flex flex-col sm:flex-row items-center">
+              <div className="w-full sm:w-1/4 mb-2 sm:mb-0 text-sm sm:text-base">
+                Work Type
+              </div>
+              <div className="flex-1 flex flex-col sm:flex-row justify-around space-y-2 sm:space-y-0">
                 <label className="flex items-center">
                   <input
                     type="checkbox"
@@ -72,7 +76,7 @@ export const FilterPopup = (props) => {
                       });
                     }}
                   />
-                  <span className="ml-2">Remote</span>
+                  <span className="ml-2 text-sm sm:text-base">Remote</span>
                 </label>
                 <label className="flex items-center">
                   <input
@@ -89,16 +93,14 @@ export const FilterPopup = (props) => {
                       });
                     }}
                   />
-                  <span className="ml-2">InOffice</span>{" "}
-                  {/* Update this line */}
+                  <span className="ml-2 text-sm sm:text-base">InOffice</span>
                 </label>
               </div>
             </div>
             <div className="flex justify-center">
               <button
-                className="bg-[#6d28d9] text-white py-2 px-4 rounded"
+                className="bg-[#6d28d9] text-white py-2 px-4 rounded text-sm sm:text-base"
                 onClick={() => {
-                  // console.log("Applying filters with options:", searchOptions);
                   getData(searchOptions);
                   handleClose();
                 }}
@@ -106,85 +108,6 @@ export const FilterPopup = (props) => {
                 Apply
               </button>
             </div>
-            {/* <div className="flex items-center">
-              <div className="w-1/4">Sort</div>
-              <div className="flex-1 flex justify-around">
-                <label className="flex items-center">
-                  <input
-                    type="checkbox"
-                    name="salary"
-                    checked={searchOptions.sort.salary.status}
-                    onChange={(event) =>
-                      setSearchOptions({
-                        ...searchOptions,
-                        sort: {
-                          ...searchOptions.sort,
-                          salary: {
-                            ...searchOptions.sort.salary,
-                            status: event.target.checked,
-                          },
-                        },
-                      })
-                    }
-                  />
-                  <span className="ml-2">Salary</span>
-                  <button
-                    disabled={!searchOptions.sort.salary.status}
-                    onClick={() => {
-                      setSearchOptions({
-                        ...searchOptions,
-                        sort: {
-                          ...searchOptions.sort,
-                          salary: {
-                            ...searchOptions.sort.salary,
-                            desc: !searchOptions.sort.salary.desc,
-                          },
-                        },
-                      });
-                    }}
-                  >
-                    {searchOptions.sort.salary.desc ? "↓" : "↑"}
-                  </button>
-                </label>
-                <label className="flex items-center">
-                  <input
-                    type="checkbox"
-                    name="rating"
-                    checked={searchOptions.sort.rating.status}
-                    onChange={(event) =>
-                      setSearchOptions({
-                        ...searchOptions,
-                        sort: {
-                          ...searchOptions.sort,
-                          rating: {
-                            ...searchOptions.sort.rating,
-                            status: event.target.checked,
-                          },
-                        },
-                      })
-                    }
-                  />
-                  <span className="ml-2">Rating</span>
-                  <button
-                    disabled={!searchOptions.sort.rating.status}
-                    onClick={() => {
-                      setSearchOptions({
-                        ...searchOptions,
-                        sort: {
-                          ...searchOptions.sort,
-                          rating: {
-                            ...searchOptions.sort.rating,
-                            desc: !searchOptions.sort.rating.desc,
-                          },
-                        },
-                      });
-                    }}
-                  >
-                    {searchOptions.sort.rating.desc ? "↓" : "↑"}
-                  </button>
-                </label>
-              </div>
-            </div> */}
           </div>
         </div>
       </div>
@@ -201,23 +124,16 @@ FilterPopup.propTypes = {
       fullTime: PropTypes.bool,
       partTime: PropTypes.bool,
       intern: PropTypes.bool,
-      // wfh: PropTypes.bool,
     }),
     workType: PropTypes.shape({
       remote: PropTypes.bool,
       inOffice: PropTypes.bool,
     }),
-    // salary: PropTypes.arrayOf(PropTypes.number),
-    // duration: PropTypes.string,
     sort: PropTypes.shape({
       salary: PropTypes.shape({
         status: PropTypes.bool,
         desc: PropTypes.bool,
       }),
-      // duration: PropTypes.shape({
-      //   status: PropTypes.bool,
-      //   desc: PropTypes.bool,
-      // }),
       rating: PropTypes.shape({
         status: PropTypes.bool,
         desc: PropTypes.bool,

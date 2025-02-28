@@ -22,8 +22,8 @@ const MultifieldInput = ({ education, setEducation }) => {
   return (
     <div>
       {education.map((obj, key) => (
-        <div className="flex mb-4" key={key}>
-          <div className="flex-1 mr-2">
+        <div className="flex flex-col md:flex-row mb-4 gap-2" key={key}>
+          <div className="flex-1">
             <input
               type="text"
               placeholder={`Institution Name #${key + 1}`}
@@ -33,10 +33,10 @@ const MultifieldInput = ({ education, setEducation }) => {
                 newEdu[key].institutionName = event.target.value;
                 setEducation(newEdu);
               }}
-              className="border border-cyan-500/50 p-2 w-full bg-[#041124] text-cyan-400"
+              className="border border-cyan-500/50 p-2 w-full bg-[#041124] text-cyan-400 rounded-lg focus:outline-none focus:border-cyan-500"
             />
           </div>
-          <div className="flex-1 mr-2">
+          <div className="flex-1">
             <input
               type="number"
               placeholder="Start Year"
@@ -46,7 +46,7 @@ const MultifieldInput = ({ education, setEducation }) => {
                 newEdu[key].startYear = event.target.value;
                 setEducation(newEdu);
               }}
-              className="border border-cyan-500/50 p-2 w-full bg-[#041124] text-cyan-400"
+              className="border border-cyan-500/50 p-2 w-full bg-[#041124] text-cyan-400 rounded-lg focus:outline-none focus:border-cyan-500"
             />
           </div>
           <div className="flex-1">
@@ -59,7 +59,7 @@ const MultifieldInput = ({ education, setEducation }) => {
                 newEdu[key].endYear = event.target.value;
                 setEducation(newEdu);
               }}
-              className="border border-cyan-500/50 p-2 w-full bg-[#041124] text-cyan-400"
+              className="border border-cyan-500/50 p-2 w-full bg-[#041124] text-cyan-400 rounded-lg focus:outline-none focus:border-cyan-500"
             />
           </div>
         </div>
@@ -71,7 +71,7 @@ const MultifieldInput = ({ education, setEducation }) => {
             { institutionName: "", startYear: "", endYear: "" },
           ])
         }
-        className="bg-[#22D3EE] text-[#02101E] px-4 py-2 mt-4 shadow-xl shadow-cyan-500/20"
+        className="bg-[#22D3EE] text-[#02101E] px-4 py-2 mt-4 shadow-xl shadow-cyan-500/20 rounded-lg hover:bg-cyan-400 transition duration-300"
       >
         Add another institution details
       </button>
@@ -236,7 +236,7 @@ const Profile = () => {
 
   return (
     <div className="container mx-auto mt-14 p-4 bg-[#02101E] text-cyan-400">
-      <div className="flex justify-between rounded-xl items-center text-lg w-full gap-5 text-cyan-400 mb-4">
+      <div className="flex flex-col md:flex-row justify-between rounded-xl items-center text-lg w-full gap-2 md:gap-5 text-cyan-400 mb-4">
         <button
           onClick={() => setSelectedTab("viewProfile")}
           className={`flex py-2 w-full border-x-2 border-b-2 rounded-xl justify-center ${

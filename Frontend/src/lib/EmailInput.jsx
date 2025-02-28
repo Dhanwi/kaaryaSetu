@@ -39,6 +39,7 @@ const EmailInput = (props) => {
       }}
       error={inputErrorHandler.email.error}
       className={`custom-email-input ${className}`} // Add a custom class
+      fullWidth // Ensure the input takes full width of its container
     />
   );
 };

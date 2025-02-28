@@ -15,10 +15,9 @@ export const JobTile = ({ job }) => {
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
   const [sop, setSop] = useState("");
-  const [isSaved, setIsSaved] = useState(false); // State to track if job is saved
+  const [isSaved, setIsSaved] = useState(false);
 
   useEffect(() => {
-    // Check if the job is already saved
     axios
       .get(apiList.savedJobs, {
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
@@ -43,7 +42,7 @@ export const JobTile = ({ job }) => {
     axios
       .post(
         `${apiList.jobs}/${job._id}/applications`,
-        { status: "apply" }, // Ensure initial status is "apply"
+        { status: "apply" },
         {
           headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
         }
@@ -110,44 +109,44 @@ export const JobTile = ({ job }) => {
       });
   };
 
-  // const deadline = new Date(job.deadline).toLocaleDateString();
-
   return (
     <div className="border p-4 rounded shadow-md mb-4 bg-[#02101E] text-cyan-400">
       <div className="flex flex-col md:flex-row justify-between">
         <div className="flex-1">
-          <div className="flex">
-            <div className="flex flex-col flex-1">
-              <h3 className="text-lg font-black uppercase">{job.title}</h3>
-              <div className="companyName flex gap-8">
+          <div className="flex flex-col md:flex-row justify-between">
+            <div className="flex-1">
+              <h3 className="text-lg md:text-xl lg:text-2xl font-black uppercase">
+                {job.title}
+              </h3>
+              <div className="companyName flex flex-col md:flex-row gap-2 md:gap-8">
                 {job.companyName && (
                   <p className="font-semibold">{job.companyName}</p>
                 )}
                 {job.salary && (
                   <>
-                    <span>|</span>
+                    <span className="hidden md:inline">|</span>
                     <p className="font-semibold">{job.salary}</p>
                   </>
                 )}
               </div>
             </div>
 
-            <div className="flex items-end justify-end align-middle">
+            <div className="flex items-end justify-end mt-4 md:mt-0">
               <button
-                className="bg-[#041124] border border-cyan-400 cursor-pointer text-cyan-400 text-center w-full lg:w-auto py-2 px-4 rounded mb-2 shadow-xl shadow-cyan-500/20"
+                className="bg-[#041124] border border-cyan-400 cursor-pointer text-cyan-400 text-center w-full md:w-auto py-2 px-4 rounded mb-2 shadow-xl shadow-cyan-500/20"
                 onClick={() => navigate(`/job/${job._id}`)}
               >
                 View Job
               </button>
-              <div className="flex flex-col ml-3 items-center align-middle justify-center place-content-center">
+              <div className="flex flex-col ml-3 items-center justify-center">
                 <IconButton onClick={handleSave}>
                   {isSaved ? (
-                    <CheckIcon style={{ color: "cyan" }} /> // Add cyan color to check icon
+                    <CheckIcon style={{ color: "cyan" }} />
                   ) : (
-                    <SaveIcon style={{ color: "cyan" }} /> // Add cyan color to save icon
+                    <SaveIcon style={{ color: "cyan" }} />
                   )}
                 </IconButton>
-                <div className="text-cyan-400 text-center rounded">
+                <div className="text-cyan-400 text-center text-sm">
                   {isSaved ? "Saved" : "Save"}
                 </div>
               </div>
@@ -155,11 +154,11 @@ export const JobTile = ({ job }) => {
           </div>
 
           {job.skillsets && (
-            <div className="flex flex-wrap mt-2">
+            <div className="flex flex-wrap mt-2 gap-2">
               {job.skillsets.map((skill) => (
                 <span
                   key={skill}
-                  className="bg-gray-200 text-gray-800 px-2 py-1 rounded-full mr-2"
+                  className="bg-gray-200 text-gray-800 px-2 py-1 rounded-full text-sm"
                 >
                   {skill}
                 </span>
@@ -168,7 +167,7 @@ export const JobTile = ({ job }) => {
           )}
           <div className="mt-4">
             <p
-              className="overflow-hidden text-ellipsis"
+              className="overflow-hidden text-ellipsis text-sm md:text-base"
               style={{
                 display: "-webkit-box",
                 WebkitBoxOrient: "vertical",
@@ -178,25 +177,25 @@ export const JobTile = ({ job }) => {
             />
           </div>
 
-          <div className="flex items-center align-middle justify-center">
-            <div className="bg-[#041124] h-[1px] md:h-[2px] flex-shrink-0 w-full my-2 shadow-xl shadow-cyan-500/20"></div>
+          <div className="flex items-center justify-center my-4">
+            <div className="bg-[#041124] h-[1px] md:h-[2px] flex-shrink-0 w-full shadow-xl shadow-cyan-500/20"></div>
           </div>
 
-          <div className="flex flex-wrap gap-3 mb-3">
-            <div className="flex gap-3">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+            <div className="flex flex-wrap gap-2">
               {job.jobType && (
-                <p className="bg-[#041124] border border-cyan-400 rounded-full p-2 shadow-xl shadow-cyan-500/20">
+                <p className="bg-[#041124] border border-cyan-400 rounded-full px-3 py-1 text-sm shadow-xl shadow-cyan-500/20">
                   {job.jobType}
                 </p>
               )}
               {job.workType && (
-                <p className="bg-[#041124] border border-cyan-400 rounded-full p-2 shadow-xl shadow-cyan-500/20">
+                <p className="bg-[#041124] border border-cyan-400 rounded-full px-3 py-1 text-sm shadow-xl shadow-cyan-500/20">
                   {job.workType}
                 </p>
               )}
             </div>
 
-            <div className="flex flex-col items-center lg:items-end lg:justify-end w-full lg:w-auto">
+            <div className="w-full md:w-auto">
               <a
                 href={
                   job.url &&
@@ -207,7 +206,7 @@ export const JobTile = ({ job }) => {
                 }
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-[#041124] border border-cyan-400 cursor-pointer text-cyan-400 text-center w-full lg:w-auto py-2 px-4 rounded shadow-xl shadow-cyan-500/20"
+                className="bg-[#041124] border border-cyan-400 cursor-pointer text-cyan-400 text-center w-full py-2 px-4 rounded shadow-xl shadow-cyan-500/20 block"
                 onClick={handleApply}
                 disabled={userType() === "recruiter"}
               >

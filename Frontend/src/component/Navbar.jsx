@@ -41,142 +41,133 @@ const Navbar = (props) => {
         )}
       </div>
 
+      {/* Mobile Menu Icon */}
       <div className="lg:hidden flex items-center gap-2 p-2 text-white">
         <MenuIcon
           className="cursor-pointer"
-          onMouseEnter={() => setMenuOpen(true)}
+          onClick={() => setMenuOpen(!menuOpen)}
         />
-        {menuOpen && (
-          <div
-            className="absolute top-0 right-0 mt-16 mr-2 bg-[#123456] border border-[#6b82a6] rounded-lg shadow-lg"
-            onMouseLeave={() => setMenuOpen(false)}
-          >
-            <div className="flex flex-col p-4">
-              {isAuthenticated ? (
-                userType() === "recruiter" ? (
-                  <>
-                    <Button color="inherit" onClick={() => handleClick("/")}>
-                      Home
-                    </Button>
-                    <Button
-                      color="inherit"
-                      onClick={() => handleClick("/jobs")}
-                    >
-                      Jobs
-                    </Button>
-                    <Button
-                      color="inherit"
-                      onClick={() => handleClick("/addjob")}
-                    >
-                      Add Jobs
-                    </Button>
-                    <Button
-                      color="inherit"
-                      onClick={() => handleClick("/myjobs")}
-                    >
-                      My Jobs
-                    </Button>
-                    <Button
-                      color="inherit"
-                      onClick={() => handleClick("/employees")}
-                    >
-                      Employees
-                    </Button>
-                    <Button
-                      color="inherit"
-                      onClick={() => handleClick("/profile")}
-                    >
-                      Profile
-                    </Button>
-                    <Button
-                      color="inherit"
-                      onClick={() => handleClick("/about")}
-                    >
-                      About Us <InfoIcon />
-                    </Button>
-                    <Button
-                      color="inherit"
-                      onClick={() => handleClick("/logout")}
-                    >
-                      Logout
-                    </Button>
-                  </>
-                ) : (
-                  <>
-                    <Button color="inherit" onClick={() => handleClick("/")}>
-                      Home
-                    </Button>
-                    <Button
-                      color="inherit"
-                      onClick={() => handleClick("/jobs")}
-                    >
-                      Jobs
-                    </Button>
-                    <Button
-                      color="inherit"
-                      onClick={() => handleClick("/applications")}
-                    >
-                      Applications
-                    </Button>
-                    <Button
-                      color="inherit"
-                      onClick={() => handleClick("/saved-jobs")}
-                    >
-                      Saved Jobs
-                    </Button>
-                    <Button
-                      color="inherit"
-                      onClick={() => handleClick("/profile")}
-                    >
-                      Profile
-                    </Button>
-                    <Button
-                      color="inherit"
-                      onClick={() => handleClick("/about")}
-                    >
-                      About Us <InfoIcon />
-                    </Button>
-                    <Button
-                      color="inherit"
-                      onClick={() => handleClick("/logout")}
-                    >
-                      Logout
-                    </Button>
-                  </>
-                )
+      </div>
+
+      {/* Mobile Menu */}
+      {menuOpen && (
+        <div
+          className="fixed top-0 left-0 w-full h-full bg-[#041124] bg-opacity-95 z-50 flex flex-col items-center justify-center"
+          onClick={() => setMenuOpen(false)}
+        >
+          <CloseIcon
+            className="absolute top-4 right-4 cursor-pointer text-white"
+            onClick={() => setMenuOpen(false)}
+          />
+          <div className="flex flex-col items-center gap-4">
+            {isAuthenticated ? (
+              userType() === "recruiter" ? (
+                <>
+                  <Button color="inherit" onClick={() => handleClick("/")}>
+                    Home
+                  </Button>
+                  <Button color="inherit" onClick={() => handleClick("/jobs")}>
+                    Jobs
+                  </Button>
+                  <Button
+                    color="inherit"
+                    onClick={() => handleClick("/addjob")}
+                  >
+                    Add Jobs
+                  </Button>
+                  <Button
+                    color="inherit"
+                    onClick={() => handleClick("/myjobs")}
+                  >
+                    My Jobs
+                  </Button>
+                  <Button
+                    color="inherit"
+                    onClick={() => handleClick("/employees")}
+                  >
+                    Employees
+                  </Button>
+                  <Button
+                    color="inherit"
+                    onClick={() => handleClick("/profile")}
+                  >
+                    Profile
+                  </Button>
+                  <Button color="inherit" onClick={() => handleClick("/about")}>
+                    About Us <InfoIcon />
+                  </Button>
+                  <Button
+                    color="inherit"
+                    onClick={() => handleClick("/logout")}
+                  >
+                    Logout
+                  </Button>
+                </>
               ) : (
                 <>
                   <Button color="inherit" onClick={() => handleClick("/")}>
                     Home
                   </Button>
-                  <Button
-                    color="inherit"
-                    onClick={() =>
-                      handleClick(`/login?redirect=${redirectUrl}`)
-                    }
-                  >
-                    Login
+                  <Button color="inherit" onClick={() => handleClick("/jobs")}>
+                    Jobs
                   </Button>
                   <Button
                     color="inherit"
-                    onClick={() =>
-                      handleClick(`/signup?redirect=${redirectUrl}`)
-                    }
+                    onClick={() => handleClick("/applications")}
                   >
-                    Signup
+                    Applications
+                  </Button>
+                  <Button
+                    color="inherit"
+                    onClick={() => handleClick("/saved-jobs")}
+                  >
+                    Saved Jobs
+                  </Button>
+                  <Button
+                    color="inherit"
+                    onClick={() => handleClick("/profile")}
+                  >
+                    Profile
                   </Button>
                   <Button color="inherit" onClick={() => handleClick("/about")}>
                     About Us <InfoIcon />
                   </Button>
+                  <Button
+                    color="inherit"
+                    onClick={() => handleClick("/logout")}
+                  >
+                    Logout
+                  </Button>
                 </>
-              )}
-            </div>
+              )
+            ) : (
+              <>
+                <Button color="inherit" onClick={() => handleClick("/")}>
+                  Home
+                </Button>
+                <Button
+                  color="inherit"
+                  onClick={() => handleClick(`/login?redirect=${redirectUrl}`)}
+                >
+                  Login
+                </Button>
+                <Button
+                  color="inherit"
+                  onClick={() => handleClick(`/signup?redirect=${redirectUrl}`)}
+                >
+                  Signup
+                </Button>
+                <Button color="inherit" onClick={() => handleClick("/about")}>
+                  About Us <InfoIcon />
+                </Button>
+              </>
+            )}
           </div>
-        )}
-      </div>
+        </div>
+      )}
 
-      {/* Navbar buttons */}
-      <div className="hidden lg:flex items-center gap-2 p-2 text-white">
+      {/* Desktop Navbar */}
+      <div className="hidden lg:flex items-center gap-4 p-2 text-white">
         {isAuthenticated ? (
           userType() === "recruiter" ? (
             <>

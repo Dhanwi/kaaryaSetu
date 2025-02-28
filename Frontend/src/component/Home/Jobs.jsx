@@ -15,8 +15,7 @@ const Jobs = () => {
     query: "",
     jobType: {
       fullTime: false,
-      // partTime: false,
-      intern: false, // Add this line
+      intern: false,
       wfh: false,
     },
     workType: {
@@ -48,7 +47,7 @@ const Jobs = () => {
       searchParams.push(`jobType=Part%20Time`);
     }
     if (options.jobType.intern) {
-      searchParams.push(`jobType=Internship`); // Update this line
+      searchParams.push(`jobType=Internship`);
     }
     if (options.jobType.wfh) {
       searchParams.push(`jobType=Work%20From%20Home`);
@@ -57,7 +56,7 @@ const Jobs = () => {
       searchParams.push(`workType=Remote`);
     }
     if (options.workType.inOffice) {
-      searchParams.push(`workType=InOffice`); // Ensure this matches the backend value
+      searchParams.push(`workType=InOffice`);
     }
     if (options.salary[0] !== 0) {
       searchParams.push(`salaryMin=${options.salary[0] * 1000}`);
@@ -82,8 +81,6 @@ const Jobs = () => {
     if (queryString) {
       address += `?${queryString}`;
     }
-
-    // console.log("Fetching data from:", address); // Add this line for debugging
 
     axios
       .get(address, {
@@ -173,7 +170,7 @@ const Jobs = () => {
           )}
         </div>
 
-        <div className=" hidden lg:flex lg:flex-row w-full">
+        <div className="hidden lg:flex lg:flex-row w-full">
           <div className="lg:w-1/6 lg:fixed lg:top-0 lg:h-screen lg:bg-[#041124] lg:bg-opacity-50 lg:backdrop-blur-lg lg:p-6 lg:mt-44 lg:border-r-2 lg:border-cyan-400 shadow-xl shadow-cyan-500/20">
             <Filterlg
               open={filterOpen}

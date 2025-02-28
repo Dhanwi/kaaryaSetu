@@ -43,9 +43,27 @@ app.use(bodyParser.json()); // support json encoded bodies
 app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 
 // Setting up middlewares
+// app.use(
+//   cors({
+//     origin: process.env.VITE_URL,
+//     credentials: true,
+//   })
+// );
+
+const allowedOrigins = [
+  "http://localhost:5173", // Allow frontend development server
+  "https://kaaryasetu.tech", // Allow production frontend
+];
+
 app.use(
   cors({
-    origin: process.env.VITE_URL,
+    origin: function (origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
     credentials: true,
   })
 );

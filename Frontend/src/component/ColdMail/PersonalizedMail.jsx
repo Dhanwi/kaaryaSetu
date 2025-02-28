@@ -107,17 +107,17 @@ const PersonalizedMail = ({
   return (
     <div className="my-4 p-4 bg-[#02101E]">
       <div className="flex flex-col items-center px-5">
-        <div className="text-[#22D3EE] text-4xl font-bold mt-5 text-center mb-5">
+        <div className="text-[#22D3EE] text-2xl md:text-4xl font-bold mt-5 text-center mb-5">
           Your Success Matters <FaRocket className="inline ml-2" /> – Let’s
           Perfect Your Resume!
         </div>
-        <div className="text-xl font-serif text-[#06B6D4] mt-5 text-center mb-5">
+        <div className="text-lg md:text-xl font-serif text-[#06B6D4] mt-5 text-center mb-5">
           We’re here to help you stand out with a polished, job-ready resume! To
           ensure you get the best feedback while respecting everyone’s time,
           here’s how it works:
         </div>
         <div className="flex items-center text-center justify-center mt-2 mb-5">
-          <div className="flex bg-[#041124] gap-4 flex-col rounded-3xl border border-cyan-500/50 p-4 items-start text-lg font-serif text-white shadow-xl shadow-cyan-500/20">
+          <div className="flex bg-[#041124] gap-4 flex-col rounded-3xl border border-cyan-500/50 p-4 items-start text-base md:text-lg font-serif text-white shadow-xl shadow-cyan-500/20">
             <div className="text-start bg-[#020C1B] rounded-2xl border border-cyan-500/50 p-3">
               <FaCheckCircle className="inline mr-2" /> One Free Review Per Week
               – We’ll review your resume once a week, so make sure to request
@@ -138,7 +138,7 @@ const PersonalizedMail = ({
             </div>
           </div>
         </div>
-        <div className="text-xl font-serif text-[#22D3EE] text-center mb-5">
+        <div className="text-lg md:text-xl font-serif text-[#22D3EE] text-center mb-5">
           <FaRocket className="inline mr-2" /> We’re here to guide you, but your
           growth starts with you! Follow these steps, and together, we’ll craft
           a resume that opens doors.
@@ -149,44 +149,13 @@ const PersonalizedMail = ({
           <h2 className="text-xl text-[#22D3EE] flex justify-center mt-3 font-bold mb-1">
             Personalized Mail Request
           </h2>
-          {/* <div className="flex justify-center text-white text-lg font-serif mb-7">
-            Choose your resume, or check the already uploaded resume before
-            proceeding
-          </div>
-          <input
-            type="file"
-            onChange={handleResumeUpload}
-            className="border border-cyan-500/50 hover:bg-[#041124] text-neutral-200 hover:text-white py-4 rounded-2xl px-4 w-full mb-2"
-          />
-          {resumeFile && uploadPercentage < 100 && (
-            <button
-              onClick={uploadResume}
-              className="bg-green-500 text-white px-4 py-2 mt-2 mr-4 rounded hover:bg-green-700"
-            >
-              <FaUpload className="inline mr-2" /> Upload Resume
-            </button>
-          )}
-          {resumeFile && uploadPercentage === 100 && (
-            <button
-              onClick={getResume}
-              className="bg-blue-500 text-white px-4 py-2 mt-2 mr-4 rounded-xl hover:bg-blue-700"
-            >
-              View Your Uploaded Resume
-            </button>
-          )}
-          {uploadSuccess && (
-            <div className="text-green-500 mt-2 flex items-center">
-              <FaCheckCircle className="w-6 h-6 mr-2" />
-              Resume successfully uploaded
-            </div>
-          )} */}
         </div>
 
         <div className="mb-2 text-white font-serif text-md">
           <div className="flex mt-6 justify-center font-semibold">
             How to Request Your Personalized Resume Review
           </div>
-          <div className="flex mt-2 mb-5 justify-center text-white text-xl font-serif">
+          <div className="flex mt-2 mb-5 justify-center text-white text-lg md:text-xl font-serif">
             <FaEnvelope className="inline mr-2" /> Follow these simple steps to
             get expert feedback on your resume:
           </div>

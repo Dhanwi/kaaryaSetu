@@ -96,27 +96,27 @@ const ApplicationTile = (props) => {
   };
 
   return (
-    <div className="border-[#103874] border-2 p-6 rounded-3xl hover:border-cyan-400 shadow-md mb-4 bg-[#02101E] text-cyan-400">
+    <div className="border-[#103874] border-2 p-4 md:p-6 rounded-3xl hover:border-cyan-400 shadow-md mb-4 bg-[#02101E] text-cyan-400">
       <div className="flex flex-col md:flex-row justify-between">
         <div className="flex-1">
-          <div className="flex items-center gap-4">
-            <div>
-              <h3 className="text-lg text-white font-black uppercase">
+          <div className="flex md:flex-row items-center gap-4">
+            <div className="flex flex-col w-full">
+              <h3 className="text-lg md:text-xl text-white font-black uppercase">
                 {application.job.title}
               </h3>
-              <div className="companyName flex gap-8">
+              <div className="companyName flex flex-col md:flex-row gap-2 md:gap-8">
                 {application.job.companyName && (
                   <p className="font-semibold">{application.job.companyName}</p>
                 )}
                 {application.job.salary && (
                   <>
-                    <span>|</span>
-                    <p className="font-semibold">₹{application.job.salary}</p>
+                    <span className="hidden md:inline">|</span>
+                    <p className="font-semibold">{application.job.salary}</p>
                   </>
                 )}
               </div>
             </div>
-            <div className="flex items-end justify-end w-full">
+            <div className="flex items-end justify-end w-full md:w-auto">
               {status === "apply" && (
                 <HaveYouAplied
                   job={application.job}
@@ -124,7 +124,7 @@ const ApplicationTile = (props) => {
                 />
               )}
               <div
-                className=" text-white shadow-black shadow-2xl border-2 border-cyan-400 font-bold px-4 py-2 rounded mb-2"
+                className="text-white shadow-black shadow-2xl border-2 border-cyan-400 font-bold px-4 py-2 rounded mb-2"
                 style={{ background: colorSet[status] }}
               >
                 {status}
@@ -145,7 +145,7 @@ const ApplicationTile = (props) => {
             </p>
           </div>
           <div className="flex items-center align-middle justify-center">
-            <div className="bg-[#041124] h-[1px] md:h-[2px] flex-shrink-0 w-full my-2 shadow-xl shadow-cyan-500/20"></div>
+            <div className="bg-cyan-800 h-[1px] md:h-[2px] flex-shrink-0 w-full my-2 shadow-xl shadow-cyan-500/20"></div>
           </div>
           <div className="flex flex-wrap gap-3 mb-3">
             <div className="flex items-center lg:items-end lg:justify-end w-full lg:w-auto">

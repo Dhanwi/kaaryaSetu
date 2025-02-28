@@ -78,7 +78,11 @@ const JobDetails = () => {
           err.response &&
           err.response.data.message === "You have already applied for this job"
         ) {
-          alert("You have already applied for this job");
+          setPopup({
+            open: true,
+            severity: "info",
+            message: "You have already applied for this job",
+          });
         } else {
           setPopup({
             open: true,
@@ -129,28 +133,28 @@ const JobDetails = () => {
   }
 
   return (
-    <div className=" p-8 mt-16 rounded shadow-md mb-4 bg-[#02101E] text-white">
+    <div className="p-4 md:p-8 mt-16 rounded shadow-md mb-4 bg-[#02101E] text-white">
       <div className="border p-4 rounded shadow-md mb-4 bg-[#02101E] text-white">
         <div className="flex flex-col md:flex-row justify-between">
           <div className="flex-1">
-            <div className="flex">
+            <div className="flex flex-col md:flex-row justify-between">
               <div className="flex flex-col flex-1">
-                <h3 className="text-lg font-black uppercase text-cyan-400">
+                <h3 className="text-xl md:text-2xl font-black uppercase text-cyan-400">
                   {job.title}
                 </h3>
-                <div className="companyName flex gap-8">
+                <div className="companyName flex flex-col md:flex-row gap-2 md:gap-8">
                   {job.companyName && (
                     <p className="font-semibold">{job.companyName}</p>
                   )}
                   {job.salary && (
                     <>
-                      <span>|</span>
+                      <span className="hidden md:inline">|</span>
                       <p className="font-semibold">{job.salary}</p>
                     </>
                   )}
                 </div>
               </div>
-              <div className="flex items-end justify-end align-middle">
+              <div className="flex items-end justify-end align-middle mt-4 md:mt-0">
                 <a
                   href={
                     job.url &&
@@ -161,7 +165,7 @@ const JobDetails = () => {
                   }
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="bg-[#041124] border border-cyan-400 cursor-pointer text-white text-center w-full lg:w-auto py-2 px-4 rounded"
+                  className="bg-[#041124] border border-cyan-400 cursor-pointer text-white text-center w-full md:w-auto py-2 px-4 rounded"
                   onClick={handleApply}
                   disabled={userType() === "recruiter"}
                 >
@@ -225,7 +229,7 @@ const JobDetails = () => {
                 {job.skillsets.map((skill) => (
                   <span
                     key={skill}
-                    className="bg-gray-200 text-gray-800 px-2 py-1 rounded-full mr-2"
+                    className="bg-gray-200 text-gray-800 px-2 py-1 rounded-full mr-2 mb-2"
                   >
                     {skill}
                   </span>

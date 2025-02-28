@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import Axios from "axios";
 import { LinearProgress } from "@mui/material";
 import { CloudUpload } from "@mui/icons-material";
-
 import { SetPopupContext } from "../App";
 
 const FileUploadInput = ({
@@ -54,10 +53,12 @@ const FileUploadInput = ({
   };
 
   return (
-    <div className="flex flex-col mb-4">
-      <label className="text-sm text-cyan-400 font-medium mb-1">{label}</label>
-      <div className="flex items-center gap-4">
-        <label className="cursor-pointer bg-[#041124] border border-cyan-500/50 text-cyan-400 px-4 py-2 rounded shadow-xl shadow-cyan-500/20">
+    <div className="flex flex-col mb-4 w-full">
+      <label className="text-sm md:text-base text-cyan-400 font-medium mb-1">
+        {label}
+      </label>
+      <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-4 w-full">
+        <label className="cursor-pointer bg-[#041124] border border-cyan-500/50 text-cyan-400 px-3 py-2 rounded shadow-xl shadow-cyan-500/20 w-full sm:w-auto">
           {icon || <CloudUpload style={{ color: "#22D3EE" }} />}
           <input
             type="file"
@@ -70,13 +71,13 @@ const FileUploadInput = ({
         </label>
         <input
           type="text"
-          className="flex-grow p-2 border border-cyan-500/50 rounded bg-[#02101E] text-cyan-400"
+          className="flex-grow p-2 border border-cyan-500/50 rounded bg-[#02101E] text-cyan-400 w-full sm:w-auto"
           placeholder="No file selected"
           value={file?.name || existingFile?.name || ""}
           readOnly
         />
         <button
-          className={`px-4 py-2 rounded ${
+          className={`px-4 py-2 rounded w-full sm:w-auto ${
             file || existingFile
               ? "bg-[#041124] border border-cyan-500/50 text-cyan-400 shadow-xl shadow-cyan-500/20"
               : "bg-gray-400 text-gray-600 cursor-not-allowed"
@@ -88,12 +89,12 @@ const FileUploadInput = ({
         </button>
       </div>
       <div>
-        <p className="text-xs mb-1 text-gray-400 mt-1">
+        <p className="text-xs md:text-sm text-gray-400 mt-1">
           After choosing a file, click on upload to upload the file
         </p>
       </div>
       {uploadPercentage > 0 && (
-        <div className="mt-2">
+        <div className="mt-2 w-full">
           <LinearProgress
             variant="determinate"
             value={uploadPercentage}
@@ -104,6 +105,7 @@ const FileUploadInput = ({
     </div>
   );
 };
+
 FileUploadInput.propTypes = {
   uploadTo: PropTypes.string.isRequired,
   identifier: PropTypes.string.isRequired,

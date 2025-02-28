@@ -233,7 +233,7 @@ const EditProfile = () => {
 
   return (
     <div className="flex flex-col mt-10 bg-[#02101E] text-cyan-400">
-      <div className="shadow-md rounded-3xl p-6 w-full bg-[#041124] shadow-xl shadow-cyan-500/20">
+      <div className=" rounded-3xl py-6 w-full bg-[#041124] shadow-xl shadow-cyan-500/20">
         <div className="flex flex-col items-center mb-4">
           {profileDetails.profile && (
             <img

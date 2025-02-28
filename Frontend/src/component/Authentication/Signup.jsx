@@ -1,6 +1,6 @@
 import { useState, useContext, useEffect } from "react";
 import axios from "axios";
-import { useNavigate, useLocation } from "react-router-dom"; // Import useLocation
+import { useNavigate, useLocation } from "react-router-dom";
 import { SetPopupContext } from "../../App";
 import apiList from "../../lib/apiList";
 import isAuth from "../../lib/isAuth";
@@ -10,19 +10,18 @@ import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/material.css";
 import PasswordInput from "../../lib/PasswordInput";
 import EmailInput from "../../lib/EmailInput";
-import { CloudUpload } from "@mui/icons-material"; // Just the icon.
+import { CloudUpload } from "@mui/icons-material";
 import { GoogleOAuthProvider, GoogleLogin } from "@react-oauth/google";
 import StarIcon from "@mui/icons-material/Star";
-import "../../styles/customStyles.css"; // Import the custom CSS file
+import "../../styles/customStyles.css";
 import MultifieldInput from "./MultifieldInput";
 
 const Signup = () => {
   const navigate = useNavigate();
-  const location = useLocation(); // Initialize useLocation
+  const location = useLocation();
   const setPopup = useContext(SetPopupContext);
   const [loggedin, setLoggedin] = useState(isAuth());
 
-  // Extract redirect URL from query parameters
   const redirectUrl = new URLSearchParams(location.search).get("redirect");
 
   useEffect(() => {
@@ -37,7 +36,7 @@ const Signup = () => {
     password: "",
     confirmPassword: "",
     name: "",
-    education: [{ institutionName: "", startYear: "", endYear: "" }], // Ensure initial value
+    education: [{ institutionName: "", startYear: "", endYear: "" }],
     skills: [],
     resume: "",
     profile: "",
@@ -141,8 +140,8 @@ const Signup = () => {
       .post(apiList.googleSignup, {
         token,
         type: signupDetails.type,
-        redirect: redirectUrl, // Pass redirect URL to backend
-      }) // Send selected type and redirect URL
+        redirect: redirectUrl,
+      })
       .then((response) => {
         localStorage.setItem("token", response.data.token);
         localStorage.setItem("type", response.data.type);
@@ -176,71 +175,65 @@ const Signup = () => {
 
   return loggedin ? null : (
     <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID}>
-      <div className="relative flex items-center h-screen mt-96 md:mt-0 md:overflow-y-hidden p-8 bg-[#02101E]">
-        <div className="flex flex-col md:flex-row items-center gap-8 justify-center mt-10 w-full rounded-3xl p-6">
-          <div className="flex rounded-l-3xl w-full">
-            <div className="flex flex-col w-full items-center justify-center align-middle place-content-center gap-4">
-              <div className="text-cyan-400 text-xl mb-1 font-serif italic">
-                <StarIcon /> Elevate Your Career Journey! <StarIcon />
-              </div>
-              <div className="text-cyan-400 text-center text-sm mb-1 font-serif">
-                Join
-                <span className="text-cyan-400"> KaaryaSetu </span> today and
-                unlock a treasure trove of job opportunities tailored
-                specifically to your unique skills and aspirations. Benefit from
-                exclusive features like{" "}
-                <span className="text-cyan-400">
-                  {" "}
-                  direct cold mailing, insider HR insights, personalized resume
-                  reviews,{" "}
-                </span>
-                and much more. Your dream job is just a click away—take the leap
-                and start your <span className="text-cyan-400">
-                  {" "}
-                  success{" "}
-                </span>{" "}
-                story with us!
-              </div>
-              <div className="text-cyan-400 text-3xl mb-10 font-serif italic">
-                KaaryaSetu
-              </div>
+      <div className="relative flex items-center justify-center min-h-screen p-4 bg-[#02101E]">
+        <div className="flex flex-col mt-20 lg:mt-14 overflow-y-hidden lg:flex-row items-center gap-8 justify-center w-full max-w-6xl rounded-3xl md:p-5 lg:p-6">
+          <div className="flex flex-col w-full lg:w-1/2 items-center justify-center text-center gap-4">
+            <div className="text-cyan-400 text-xl mb-1 font-serif italic">
+              <StarIcon /> Elevate Your Career Journey! <StarIcon />
+            </div>
+            <div className="text-cyan-400 text-sm mb-1 font-serif">
+              Join
+              <span className="text-cyan-400"> KaaryaSetu </span> today and
+              unlock a treasure trove of job opportunities tailored specifically
+              to your unique skills and aspirations. Benefit from exclusive
+              features like{" "}
+              <span className="text-cyan-400">
+                direct cold mailing, insider HR insights, personalized resume
+                reviews,
+              </span>{" "}
+              and much more. Your dream job is just a click away—take the leap
+              and start your <span className="text-cyan-400">success</span>{" "}
+              story with us!
+            </div>
+            <div className="text-cyan-400 text-3xl mb-10 font-serif italic">
+              KaaryaSetu
+            </div>
+            <div>
+              <h1 className="text-4xl font-bold text-center mb-4 text-cyan-400">
+                Create your account
+              </h1>
+            </div>
+            <div className="mb-4">
+              <label className="block mb-1 items-center text-center text-cyan-400">
+                Choose a Category
+              </label>
+              <select
+                value={signupDetails.type}
+                onChange={(event) => handleInput("type", event.target.value)}
+                className="border border-cyan-500/50 font-semibold rounded-lg p-2 w-[80vw] md:w-[30vw] bg-[#041124] text-cyan-400"
+              >
+                <option value="applicant">Applicant</option>
+                <option value="recruiter">Recruiter</option>
+              </select>
+            </div>
+            <div className="text-cyan-400 flex flex-col items-center gap-5">
+              <div>SignUp/Login through Google</div>
               <div>
-                <h1 className="text-4xl font-bold text-center mb-4 text-cyan-400">
-                  Create your account
-                </h1>
-              </div>
-              <div className="mb-4">
-                <label className="block mb-1 items-center text-center text-cyan-400">
-                  Choose a Category
-                </label>
-                <select
-                  value={signupDetails.type}
-                  onChange={(event) => handleInput("type", event.target.value)}
-                  className="border border-cyan-500/50 font-semibold rounded-lg p-2 w-[30vw] bg-[#041124] text-cyan-400"
-                >
-                  <option value="applicant">Applicant</option>
-                  <option value="recruiter">Recruiter</option>
-                </select>
-              </div>
-              <div className="text-cyan-400 flex flex-col items-center align-middle gap-5">
-                <div>SignUp/Login through Google</div>
-                <div>
-                  <GoogleLogin
-                    onSuccess={handleGoogleSuccess}
-                    onError={handleGoogleFailure}
-                    text={isSignup ? "signup_with" : "signin_with"} // Change text dynamically
-                    key={isSignup} // Force re-render when isSignup changes
-                  />
-                </div>
+                <GoogleLogin
+                  onSuccess={handleGoogleSuccess}
+                  onError={handleGoogleFailure}
+                  text={isSignup ? "signup_with" : "signin_with"}
+                  key={isSignup}
+                />
               </div>
             </div>
           </div>
-          <div className="bg-[#041124] bg-opacity-50 mt-6 backdrop-blur-lg shadow-lg rounded-3xl border-x-2 border-cyan-500/50 px-6 py-3 max-w-lg items-center justify-center lg:w-2/3 w-full h-[85vh] overflow-y-auto custom-scrollbar">
-            <div className="">
+          <div className="bg-[#041124] bg-opacity-50 backdrop-blur-lg shadow-lg rounded-3xl border-x-2 border-cyan-500/50 px-2 lg:px-6 py-3 w-full lg:w-1/2 h-[85vh] overflow-y-auto custom-scrollbar">
+            <div className="flex flex-col items-center justify-center">
               <div className="flex items-center text-cyan-400 justify-center mt-8 mb-5">
                 ----------------Or with email and password----------------
               </div>
-              <div className="mb-4">
+              <div className="w-full mb-4">
                 <label className="block mb-1 text-cyan-400">Name *</label>
                 <input
                   type="text"
@@ -261,7 +254,7 @@ const Signup = () => {
                   </span>
                 )}
               </div>
-              <div className="flex flex-col text-cyan-400  mb-4">
+              <div className="w-full mb-4">
                 <label className="block mb-1 text-cyan-400">Email *</label>
                 <EmailInput
                   value={signupDetails.email}
@@ -272,20 +265,25 @@ const Signup = () => {
                   className={inputErrorHandler.email.error ? "error" : ""}
                 />
               </div>
-
-              <PasswordInput
-                label="Password *"
-                value={signupDetails.password}
-                onChange={(event) =>
-                  handleInput("password", event.target.value)
-                }
-                onBlur={(event) => {
-                  if (event.target.value === "")
-                    handleInputError("password", true, "Password is required");
-                  else handleInputError("password", false, "");
-                }}
-              />
-              <div className="mb-4">
+              <div className="w-full mb-4">
+                <PasswordInput
+                  label="Password *"
+                  value={signupDetails.password}
+                  onChange={(event) =>
+                    handleInput("password", event.target.value)
+                  }
+                  onBlur={(event) => {
+                    if (event.target.value === "")
+                      handleInputError(
+                        "password",
+                        true,
+                        "Password is required"
+                      );
+                    else handleInputError("password", false, "");
+                  }}
+                />
+              </div>
+              <div className="w-full mb-4">
                 <label className="block mb-1 text-cyan-400">
                   Confirm Password *
                 </label>
@@ -316,7 +314,7 @@ const Signup = () => {
               </div>
               {signupDetails.type === "applicant" ? (
                 <>
-                  <div className="mb-4">
+                  <div className="w-full mb-4">
                     <label className="block mb-1 text-cyan-400">
                       Contact Number *
                     </label>
@@ -327,7 +325,7 @@ const Signup = () => {
                       className="border-y-2 hover:shadow-cyan-500/20 hover:shadow-sm rounded-lg bg-[#02101E] border-cyan-500/50 p-2 w-full text-cyan-400"
                     />
                   </div>
-                  <div className="mb-4">
+                  <div className="w-full mb-4">
                     <label className="text-sm font-medium mb-1 text-cyan-400">
                       Education
                     </label>
@@ -338,28 +336,34 @@ const Signup = () => {
                       }
                     />
                   </div>
-                  <SkillInput
-                    signupDetails={signupDetails}
-                    setSignupDetails={setSignupDetails}
-                  />
-                  <FileUploadInput
-                    label="Upload Resume"
-                    uploadTo={apiList.uploadResume}
-                    handleInput={handleInput}
-                    identifier="resume"
-                    icon={<CloudUpload style={{ color: "#22D3EE" }} />}
-                  />
-                  <FileUploadInput
-                    label="Upload Profile Photo"
-                    uploadTo={apiList.uploadProfileImage}
-                    handleInput={handleInput}
-                    identifier="profile"
-                    icon={<CloudUpload style={{ color: "#22D3EE" }} />}
-                  />
+                  <div className="w-full mb-4">
+                    <SkillInput
+                      signupDetails={signupDetails}
+                      setSignupDetails={setSignupDetails}
+                    />
+                  </div>
+                  <div className="w-full mb-4">
+                    <FileUploadInput
+                      label="Upload Resume"
+                      uploadTo={apiList.uploadResume}
+                      handleInput={handleInput}
+                      identifier="resume"
+                      icon={<CloudUpload style={{ color: "#22D3EE" }} />}
+                    />
+                  </div>
+                  <div className="w-full mb-4">
+                    <FileUploadInput
+                      label="Upload Profile Photo"
+                      uploadTo={apiList.uploadProfileImage}
+                      handleInput={handleInput}
+                      identifier="profile"
+                      icon={<CloudUpload style={{ color: "#22D3EE" }} />}
+                    />
+                  </div>
                 </>
               ) : (
                 <>
-                  <div className="mb-4">
+                  <div className="w-full mb-4">
                     <label className="block mb-1 text-cyan-400">
                       Bio (up to 250 words)
                     </label>
@@ -372,7 +376,7 @@ const Signup = () => {
                       rows={8}
                     />
                   </div>
-                  <div className="mb-4">
+                  <div className="w-full mb-4">
                     <label className="block mb-1 text-cyan-400">
                       Contact Number
                     </label>
@@ -385,7 +389,6 @@ const Signup = () => {
                   </div>
                 </>
               )}
-
               <button
                 onClick={() => {
                   signupDetails.type === "applicant"
@@ -396,7 +399,6 @@ const Signup = () => {
               >
                 Signup
               </button>
-
               <div className="text-center mt-4 mb-5 text-sm text-[#fff]">
                 Already registered,{" "}
                 <a
@@ -405,7 +407,6 @@ const Signup = () => {
                     location.search
                   ).get("redirect")}`}
                 >
-                  {" "}
                   Login here
                 </a>
               </div>

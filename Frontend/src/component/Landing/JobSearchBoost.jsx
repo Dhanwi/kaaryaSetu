@@ -14,15 +14,15 @@ export default function JobSearchBoost() {
 
   return (
     <div className="py-16 px-6 md:px-16 bg-[#041124] text-white">
-      <div className="flex flex-col md:flex-row items-center justify-between">
-        <div className="text-center md:text-left md:w-1/2">
-          <div className="flex items-center justify-center md:justify-start">
-            <div className="flex items-center justify-center md:justify-start text-sm bg-cyan-200 backdrop-blur-md bg-opacity-30 rounded-full p-1 px-4 text-cyan-300 mb-2">
+      <div className="flex flex-col lg:flex-row items-center justify-between">
+        <div className="text-center lg:text-left lg:w-1/2">
+          <div className="flex items-center justify-center lg:justify-start">
+            <div className="flex items-center justify-center lg:justify-start text-sm bg-cyan-200 backdrop-blur-md bg-opacity-30 rounded-full p-1 px-4 text-cyan-300 mb-2">
               <FaRegStar className="mr-1" /> Trusted by Thousands of Job Seekers
             </div>
           </div>
 
-          <div className="flex flex-col items-start">
+          <div className="flex flex-col items-center lg:items-start">
             <h2 className="text-4xl font-extrabold text-cyan-400">
               Elevate Your Career
             </h2>
@@ -52,7 +52,7 @@ export default function JobSearchBoost() {
             </button>
           </div>
 
-          <p className="text-sm text-gray-400 mt-2 flex items-center justify-center md:justify-start">
+          <p className="text-sm text-gray-400 mt-2 flex items-center justify-center lg:justify-start mb-8 lg:mb-0">
             <FaLock className="mr-1" /> 100% Secure & Risk-Free
           </p>
         </div>
@@ -60,8 +60,13 @@ export default function JobSearchBoost() {
         {/* User Review Card */}
         <div className="mt-12 md:mt-0 md:ml-12 max-w-lg bg-[#0b1e45] border border-cyan-500 rounded-lg shadow-xl shadow-cyan-500/20 p-6 text-left hover:shadow-cyan-500/50 transition-all duration-300">
           <div className="flex items-center space-x-4">
-            <div className=" bg-gray-500 rounded-full"><img src="/images/akansha.jpg" alt="profile pic" className="rounded-full w-12 h-12 border-y-4 border-yellow-400"/></div>{" "}
-            
+            <div className=" bg-gray-500 rounded-full">
+              <img
+                src="/images/akansha.jpg"
+                alt="profile pic"
+                className="rounded-full w-12 h-12 border-y-4 border-yellow-400"
+              />
+            </div>{" "}
             <div>
               <h4 className="text-lg font-semibold text-cyan-300">
                 Akansha Singh

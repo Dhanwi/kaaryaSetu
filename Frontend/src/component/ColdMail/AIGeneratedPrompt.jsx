@@ -21,8 +21,8 @@ const AIGeneratedPrompt = ({
 }) => {
   return (
     <div className="p-4 bg-[#041124] rounded shadow-xl shadow-cyan-500/20">
-      <div className="flex justify-between items-center">
-        <h2 className="text-xl font-bold mb-2 text-cyan-400">
+      <div className="flex flex-col sm:flex-row justify-between items-start md:items-center">
+        <h2 className="text-lg md:text-xl font-bold mb-2 text-cyan-400">
           AI Generated Prompt
         </h2>
         <div className="text-sm bg-[#023c45] rounded-lg pl-2 py-1 text-cyan-400">
@@ -32,7 +32,7 @@ const AIGeneratedPrompt = ({
           </span>
         </div>
       </div>
-      <div className="text-sm text-cyan-400 mb-5 font-serif">
+      <div className="text-sm text-cyan-400 mb-5 mt-5 font-serif">
         AI at Your Service: Harness the power of AI to generate compelling cold
         mails that reflect your personality and the nuances of each job, helping
         you connect with confidence!
@@ -51,7 +51,7 @@ const AIGeneratedPrompt = ({
           className="border h-[40vh] rounded-lg p-2 bg-[#020C1B] text-cyan-400 w-full mb-2 custom-scrollbar border-cyan-500/50"
         />
       </div>
-      <div className=" text-cyan-400 mb-0 font-serif">User Name</div>
+      <div className="text-cyan-400 mb-0 font-serif">User Name</div>
       <div className="my-2">
         <textarea
           placeholder="Write your name here"
@@ -71,7 +71,7 @@ const AIGeneratedPrompt = ({
       >
         Generate Cold Mail Prompt
       </button>
-      <ol className="text-cyan-400 mt-4 font-serif">
+      <ol className="text-cyan-400 mt-4 font-serif space-y-2">
         <li>
           <FaRegSmile className="inline mr-2" /> You have {credits} credits
           remaining for prompt generation today!

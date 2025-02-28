@@ -29,7 +29,7 @@ const RealChallenges = () => {
         <p className="text-4xl font-black text-white z-10 mb-14 mt-2">
           <TextGenerateEffect words={RealChallengesText} />
         </p>
-        <div className="1strow flex justify-center mb-10 items-center z-10 md:w-3/4">
+        <div className="1strow flex justify-center mb-10 items-center z-10 lg:w-3/4 w-full">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 z-10">
             <div className="bg-white backdrop-blur-lg bg-opacity-0 p-6 border-y-2 rounded-lg text-white shadow-xl shadow-black">
               <p className="text-[#2ba495] text-lg flex items-center">
@@ -45,7 +45,9 @@ const RealChallenges = () => {
               <p className="text-[#000000] text-lg flex items-center">
                 <FaQuestionCircle className="mr-2" /> Not sure where to start?
               </p>
-              <h2 className="text-xl mt-2 font-bold">Cold Outreach Confusion</h2>
+              <h2 className="text-xl mt-2 font-bold">
+                Cold Outreach Confusion
+              </h2>
               <p className="mt-3">
                 Not sure how to contact HR or write a compelling cold email?
                 Most candidates miss out simply because they don’t know where to
@@ -64,7 +66,7 @@ const RealChallenges = () => {
             </div>
           </div>
         </div>
-        <div className="2ndrow flex justify-center items-center md:w-1/2">
+        <div className="2ndrow flex justify-center items-center w-full lg:w-1/2">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 z-10">
             <div className="bg-white backdrop-blur-lg bg-opacity-0 p-6 border-y-2 rounded-lg text-white shadow-xl shadow-black mx-auto">
               <p className="text-[#2ba495] text-lg flex items-center">

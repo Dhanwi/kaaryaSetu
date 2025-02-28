@@ -116,16 +116,16 @@ const content = [
 
 export default function HowItworks() {
   return (
-    <div className="bg-[#041124] overflow-hidden flex flex-col mt-5 p-10">
-      <div className="relative flex flex-col items-center justify-center">
-        <h2 className="text-lg font-bold text-white z-10">
+    <div className="bg-[#041124] overflow-hidden flex flex-col py-10 lg:py-20 px-4 sm:px-6 lg:px-8">
+      <div className="relative flex flex-col items-center justify-center text-center">
+        <h2 className="text-xl sm:text-2xl font-bold text-white z-10">
           Your Smart Job Search Process
         </h2>
-        <p className="text-3xl font-black text-white z-10 mb-10 mt-4">
+        <p className="text-2xl sm:text-4xl lg:text-5xl font-black text-white z-10 mt-4 mb-8 sm:mb-12">
           <TextGenerateEffect words={HowItWorksText} />{" "}
         </p>
       </div>
-      <div className="max-w-7xl mx-auto px-4">
+      <div className="max-w-7xl mx-auto w-full">
         <HoverEffect items={content} />
       </div>
     </div>

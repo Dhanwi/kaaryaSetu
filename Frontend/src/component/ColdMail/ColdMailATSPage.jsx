@@ -56,64 +56,74 @@ const ColdMailATSPage = ({ jobDetails }) => {
   `;
 
   return (
-    <div className="container mx-auto mt-14 p-4 bg-[#02101E] text-[#22D3EE]">
-      <div className="flex justify-between rounded-xl items-center text-lg w-full gap-5 mb-4">
+    <div className="container mx-auto lg:mt-16 mt-20 p-2 lg:p-4 bg-[#02101E] text-[#22D3EE]">
+      {/* Responsive Tab Buttons */}
+      <div className="flex flex-col md:flex-row justify-between rounded-xl items-center text-lg w-full gap-2 md:gap-5 mb-4">
         <button
           onClick={() => setSelectedTab("coldMail")}
-          className={`flex py-2 w-full border-x-2 border-b-2 rounded-xl justify-center items-center ${
+          className={`flex py-2 w-full md:w-1/3 border-x-2 border-b-2 rounded-xl justify-center items-center ${
             selectedTab === "coldMail"
               ? "bg-[#041124] text-[#22D3EE] font-bold shadow-xl shadow-cyan-500/20"
               : "text-[#06B6D4]"
           }`}
         >
-          <FaEnvelope className="mr-2" /> Ai Cold Mail Generation
+          <FaEnvelope className="mr-2" />
+          <span className="text-sm md:text-base">Ai Cold Mail Generation</span>
         </button>
         <button
           onClick={() => setSelectedTab("hrDetails")}
-          className={`flex py-2 w-full rounded-xl border-b-2 border-x-2 justify-center items-center ${
+          className={`flex py-2 w-full md:w-1/3 rounded-xl border-b-2 border-x-2 justify-center items-center ${
             selectedTab === "hrDetails"
               ? "bg-[#041124] text-[#22D3EE] font-bold shadow-xl shadow-cyan-500/20"
               : "text-[#06B6D4]"
           }`}
         >
-          <FaUserTie className="mr-2" /> HR Details
+          <FaUserTie className="mr-2" />
+          <span className="text-sm md:text-base">HR Details</span>
         </button>
         <button
           onClick={() => setSelectedTab("personalizedMail")}
-          className={`flex py-2 rounded-xl w-full border-b-2 border-x-2 justify-center items-center ${
+          className={`flex py-2 w-full md:w-1/3 rounded-xl border-b-2 border-x-2 justify-center items-center ${
             selectedTab === "personalizedMail"
               ? "bg-[#041124] text-[#22D3EE] font-bold shadow-xl shadow-cyan-500/20"
               : "text-[#06B6D4]"
           }`}
         >
-          <FaFileAlt className="mr-2" /> Personalized Resume Review
+          <FaFileAlt className="mr-2" />
+          <span className="text-sm md:text-base">
+            Personalized Resume Review
+          </span>
         </button>
       </div>
-      {selectedTab === "coldMail" && <ColdMail jobDetails={jobDetails} />}
-      {selectedTab === "hrDetails" && <HRInfo jobDetails={jobDetails} />}
-      {selectedTab === "personalizedMail" && (
-        <PersonalizedMail
-          resumeFile={resumeFile}
-          setResumeFile={setResumeFile}
-          showModal={showModal}
-          setShowModal={setShowModal}
-          customEmail={customEmail}
-          setCustomEmail={setCustomEmail}
-          emailContent={emailContent}
-          handleCopy={() => {
-            const textArea = document.createElement("textarea");
-            textArea.value = emailContent;
-            document.body.appendChild(textArea);
-            textArea.select();
-            document.execCommand("copy");
-            document.body.removeChild(textArea);
-            setCopied(true);
-            setTimeout(() => setCopied(false), 2000);
-          }}
-          copied={copied}
-          userEmail={userEmail}
-        />
-      )}
+
+      {/* Content Section */}
+      <div className="mt-6">
+        {selectedTab === "coldMail" && <ColdMail jobDetails={jobDetails} />}
+        {selectedTab === "hrDetails" && <HRInfo jobDetails={jobDetails} />}
+        {selectedTab === "personalizedMail" && (
+          <PersonalizedMail
+            resumeFile={resumeFile}
+            setResumeFile={setResumeFile}
+            showModal={showModal}
+            setShowModal={setShowModal}
+            customEmail={customEmail}
+            setCustomEmail={setCustomEmail}
+            emailContent={emailContent}
+            handleCopy={() => {
+              const textArea = document.createElement("textarea");
+              textArea.value = emailContent;
+              document.body.appendChild(textArea);
+              textArea.select();
+              document.execCommand("copy");
+              document.body.removeChild(textArea);
+              setCopied(true);
+              setTimeout(() => setCopied(false), 2000);
+            }}
+            copied={copied}
+            userEmail={userEmail}
+          />
+        )}
+      </div>
     </div>
   );
 };

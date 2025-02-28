@@ -130,11 +130,11 @@ const ColdMail = ({ jobDetails }) => {
   };
 
   return (
-    <div className="bg-[#02101E] text-[#22D3EE]">
+    <div className="bg-[#02101E] text-[#22D3EE] min-h-screen lg:p-4">
       <div className="flex justify-center mb-4">
         <ModelSelector models={models} onModelSelect={setSelectedModel} />
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-5 p-7">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 p-4">
         <RecruiterPrompt
           jobDetails={jobDetails}
           currentPage={currentPage}
@@ -156,18 +156,18 @@ const ColdMail = ({ jobDetails }) => {
           icon={<FaRegCopy className="text-[#06B6D4]" />} // Use icon with color
         />
       </div>
-      <div className="flex justify-between mt-4">
+      <div className="flex justify-between mt-4 px-4">
         <button
           onClick={() => handlePageChange("prev")}
-          className="text-[#0891B2] hover:text-[#06B6D4]"
+          className="text-[#0891B2] hover:text-[#06B6D4] flex items-center space-x-2"
         >
-          <FaArrowLeft /> Previous
+          <FaArrowLeft /> <span>Previous</span>
         </button>
         <button
           onClick={() => handlePageChange("next")}
-          className="text-[#0891B2] hover:text-[#06B6D4]"
+          className="text-[#0891B2] hover:text-[#06B6D4] flex items-center space-x-2"
         >
-          Next <FaArrowRight />
+          <span>Next</span> <FaArrowRight />
         </button>
       </div>
     </div>

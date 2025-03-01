@@ -71,15 +71,15 @@ const ColdMailATSPage = ({ jobDetails }) => {
           <span className="text-sm md:text-base">Ai Cold Mail Generation</span>
         </button>
         <button
-          onClick={() => setSelectedTab("hrDetails")}
+          onClick={() => setSelectedTab("contactDetails")}
           className={`flex py-2 w-full md:w-1/3 rounded-xl border-b-2 border-x-2 justify-center items-center ${
-            selectedTab === "hrDetails"
+            selectedTab === "contactDetails"
               ? "bg-[#041124] text-[#22D3EE] font-bold shadow-xl shadow-cyan-500/20"
               : "text-[#06B6D4]"
           }`}
         >
           <FaUserTie className="mr-2" />
-          <span className="text-sm md:text-base">HR Details</span>
+          <span className="text-sm md:text-base">Contact Details</span>
         </button>
         <button
           onClick={() => setSelectedTab("personalizedMail")}
@@ -99,7 +99,7 @@ const ColdMailATSPage = ({ jobDetails }) => {
       {/* Content Section */}
       <div className="mt-6">
         {selectedTab === "coldMail" && <ColdMail jobDetails={jobDetails} />}
-        {selectedTab === "hrDetails" && <HRInfo jobDetails={jobDetails} />}
+        {selectedTab === "contactDetails" && <HRInfo jobDetails={jobDetails} />}
         {selectedTab === "personalizedMail" && (
           <PersonalizedMail
             resumeFile={resumeFile}

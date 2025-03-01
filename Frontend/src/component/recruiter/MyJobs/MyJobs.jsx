@@ -251,7 +251,23 @@ const JobTile = (props) => {
                 onChange={(e) => handleInput("companyName", e.target.value)}
                 className="border rounded p-2 w-full bg-[#020C1B] text-[#22D3EE] border-cyan-500/50"
               />
-
+              <select
+                value={jobDetails.jobType}
+                onChange={(e) => handleInput("jobType", e.target.value)}
+                className="border rounded p-2 bg-[#020C1B] text-[#22D3EE] border-cyan-500/50"
+              >
+                <option value="FullTime">Full Time</option>
+                <option value="PartTime">Part Time</option>
+                <option value="Internship">Internship</option>
+              </select>
+              <select
+                value={jobDetails.workType}
+                onChange={(e) => handleInput("workType", e.target.value)}
+                className="border rounded p-2 bg-[#020C1B] text-[#22D3EE] border-cyan-500/50"
+              >
+                <option value="Remote">Remote</option>
+                <option value="InOffice">In Office</option>
+              </select>
               {jobDetails.prompts.map((prompt, index) => (
                 <textarea
                   key={index}

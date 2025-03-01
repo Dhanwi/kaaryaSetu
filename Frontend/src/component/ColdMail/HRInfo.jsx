@@ -32,13 +32,13 @@ const HRInfo = ({ jobDetails }) => {
         </div>
         <div className="flex flex-col md:flex-row gap-5 px-4">
           <div className="bg-[#041124] rounded-lg p-3 font-serif text-[#06B6D4] border border-cyan-500/50 text-sm md:text-base">
-            <FaEnvelope className="mr-2 inline" /> Direct Access to HR Details –
-            No more blind applications! Get verified HR emails and LinkedIn
+            <FaEnvelope className="mr-2 inline" /> Direct Access to Key Contacts
+            – No more blind applications! Get verified emails and LinkedIn
             profiles instantly.
           </div>
           <div className="bg-[#041124] rounded-lg p-3 font-serif text-[#0891B2] border border-cyan-500/50 text-sm md:text-base">
             <FaLinkedin className="mr-2 inline" /> Personalized Outreach – Send
-            tailored emails or LinkedIn messages directly to recruiters,
+            tailored emails or LinkedIn messages directly to relevant contacts,
             increasing your chances of getting noticed.
           </div>
           <div className="bg-[#041124] rounded-lg p-3 font-serif text-[#06B6D4] border border-cyan-500/50 text-sm md:text-base">
@@ -60,11 +60,11 @@ const HRInfo = ({ jobDetails }) => {
         </div>
       </div>
 
-      {/* HR Contact Information Section */}
+      {/* Contact Information Section */}
       <div className="flex flex-col justify-center">
         <div className="mt-8 justify-center flex mb-2">
           <div className="text-lg md:text-xl bg-[#020C1B] p-4 rounded-lg font-bold text-[#22D3EE] border border-cyan-500/50">
-            HR Contact Information
+            Contact Information
           </div>
         </div>
         <div className="flex flex-wrap mt-5 justify-center gap-6 px-4">
@@ -75,24 +75,26 @@ const HRInfo = ({ jobDetails }) => {
             >
               {hrDetail.hrInfo && (
                 <>
-                  <div className="font-bold text-[#22D3EE] mb-2">HR Info:</div>
+                  <div className="font-bold text-[#f4f7f7] mb-2">
+                    Contact Info:
+                  </div>
                   <textarea
                     value={hrDetail.hrInfo}
                     readOnly
-                    className="custom-scrollbar w-full bg-transparent border-none text-[#22D3EE] mb-4"
+                    className="custom-scrollbar w-full bg-transparent border-none text-[#22D3EE] mb-4 h-32 resize-none"
                     style={{ whiteSpace: "pre-wrap" }}
                   />
                 </>
               )}
               {hrDetail.hrMail && (
                 <>
-                  <div className="font-bold text-[#22D3EE] mb-2">Email:</div>
+                  <div className="font-bold text-[#e6e8e9] mb-2">Email:</div>
                   <p className="text-[#06B6D4] mb-4">{hrDetail.hrMail}</p>
                 </>
               )}
               {hrDetail.hrContactNumber && (
                 <>
-                  <div className="font-bold text-[#22D3EE] mb-2">
+                  <div className="font-bold text-[#f5f7f7] mb-2">
                     Contact Number:
                   </div>
                   <p className="text-[#06B6D4]">{hrDetail.hrContactNumber}</p>
@@ -112,8 +114,8 @@ const HRInfo = ({ jobDetails }) => {
         <div className="flex flex-col w-full md:w-[50vw] gap-5 mt-4 bg-[#020C1B] p-4 rounded-lg border border-cyan-500/50">
           <div className="flex flex-col md:flex-row gap-4">
             <div className="bg-[#041124] p-4 rounded-lg text-[#06B6D4] border border-cyan-500/50 text-sm md:text-base">
-              You’re now one step ahead with direct HR contact details—don’t
-              just wait, take action!
+              You’re now one step ahead with direct contact details—don’t just
+              wait, take action!
             </div>
             <div className="bg-[#041124] p-4 rounded-lg text-[#0891B2] border border-cyan-500/50 text-sm md:text-base">
               <FaLinkedin className="mr-2 inline" /> Send a cold email or
